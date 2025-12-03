@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-white dark:bg-black">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background dark:bg-background">
         {/* Background Effects */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-[128px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-[128px] pointer-events-none" />

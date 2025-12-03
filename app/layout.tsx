@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-white dark:bg-black min-h-screen flex flex-col`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-background dark:bg-background min-h-screen flex flex-col`}
       >
         <ThemeProvider>
           <Navbar />
