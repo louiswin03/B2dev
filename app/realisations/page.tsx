@@ -5,6 +5,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { Section } from "../components/ui/Section";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const projects = [
   {
@@ -42,6 +43,15 @@ const projects = [
 ];
 
 export default function PortfolioPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <>
       <Section className="pt-32 pb-10">
@@ -66,17 +76,17 @@ export default function PortfolioPage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
-              className="group relative overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 cursor-pointer hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-2"
+              transition={{ delay: isMobile ? 0 : index * 0.05, duration: 0.3 }}
+              className={`group relative overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 cursor-pointer transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-2' : ''}`}
             >
               {/* Image Placeholder */}
               <div className="relative h-64 overflow-hidden">
                 <div className="absolute inset-0 bg-neutral-800 animate-pulse" /> {/* Fallback if image fails */}
-                <Image 
-                  src={project.image} 
+                <Image
+                  src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className={`object-cover ${!isMobile ? 'transition-transform duration-500 group-hover:scale-110' : ''}`}
                 />
                 <div className="absolute inset-0 bg-black/60 dark:bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   <Link href={project.link} className="p-3 bg-white dark:bg-white text-neutral-900 dark:text-black rounded-full hover:bg-blue-500 hover:text-white transition-colors">

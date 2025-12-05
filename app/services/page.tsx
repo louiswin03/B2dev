@@ -6,7 +6,7 @@ import { Button } from "../components/ui/Button";
 import { Section } from "../components/ui/Section";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const offers = [
   {
@@ -88,6 +88,15 @@ const faqs = [
 
 export default function ServicesPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <>
       <Section className="pt-32 pb-10 text-center">

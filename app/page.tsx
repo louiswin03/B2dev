@@ -9,19 +9,39 @@ import Link from "next/link";
 import { BlurRevealText } from "./components/BlurRevealText";
 import { useRef, useState, useEffect } from "react";
 
+// Composant simple pour mobile (sans animation)
+function SimpleCodeLine({ number, indent, parts, delay = 0 }: { number: string; indent: boolean; parts: { text: string; color: string }[]; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3, delay }}
+      className={`font-mono text-sm flex items-center gap-2 ${indent ? 'pl-6' : ''}`}
+    >
+      <span className="text-neutral-500">{number}</span>
+      <span>
+        {parts.map((part, i) => (
+          <span key={i} className={part.color}>{part.text}</span>
+        ))}
+      </span>
+    </motion.div>
+  );
+}
+
 // Composant pour une ligne de code avec animation basée sur le scroll
-function CodeLine({ 
-  number, 
-  progress, 
-  opacity, 
-  indent, 
+function CodeLine({
+  number,
+  progress,
+  opacity,
+  indent,
   parts,
-  showCursor = false 
-}: { 
-  number: string; 
-  progress: any; 
-  opacity: any; 
-  indent: boolean; 
+  showCursor = false
+}: {
+  number: string;
+  progress: any;
+  opacity: any;
+  indent: boolean;
   parts: { text: string; color: string }[];
   showCursor?: boolean;
 }) {
@@ -77,9 +97,14 @@ function CodeLine({
 export default function Home() {
   const codeSectionRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -199,10 +224,10 @@ export default function Home() {
       <Section>
         <div ref={isMounted ? codeSectionRef : null} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 20 : 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: isMobile ? 0.3 : 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900 dark:text-white">
               Pourquoi choisir <span className="text-blue-500">DevAgency</span> ?
@@ -243,118 +268,184 @@ export default function Home() {
           <motion.div
             className="relative h-[600px] rounded-2xl overflow-hidden border border-neutral-200 dark:border-white/10 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 dark:from-black dark:via-neutral-900 dark:to-black"
           >
-            {/* Grid pattern background */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
+            {/* Grid pattern background - désactivé sur mobile */}
+            {!isMobile && <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />}
 
-            {/* Gradient overlays */}
-            <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+            {/* Gradient overlays - simplifiés sur mobile */}
+            {!isMobile && (
+              <>
+                <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+              </>
+            )}
 
-            {/* Real code lines with scroll-based animation */}
+            {/* Real code lines with scroll-based animation - version simplifiée sur mobile */}
             <div className="relative h-full flex flex-col items-start justify-center gap-3 px-8 md:px-12 text-left w-full">
-              {/* Line 1 */}
-              <CodeLine
-                number="01"
-                progress={line1Progress}
-                opacity={line1Opacity}
-                indent={false}
-                parts={[
-                  { text: "const", color: "text-purple-400" },
-                  { text: " ", color: "text-white" },
-                  { text: "createWebsite", color: "text-blue-300" },
-                  { text: " ", color: "text-white" },
-                  { text: "=", color: "text-white" },
-                  { text: " ", color: "text-white" },
-                  { text: "()", color: "text-yellow-300" },
-                  { text: " ", color: "text-white" },
-                  { text: "=>", color: "text-purple-400" },
-                  { text: " ", color: "text-white" },
-                  { text: "{", color: "text-yellow-300" }
-                ]}
-              />
+              {isMobile ? (
+                <>
+                  <SimpleCodeLine number="01" indent={false} delay={0} parts={[
+                    { text: "const", color: "text-purple-400" },
+                    { text: " ", color: "text-white" },
+                    { text: "createWebsite", color: "text-blue-300" },
+                    { text: " ", color: "text-white" },
+                    { text: "=", color: "text-white" },
+                    { text: " ", color: "text-white" },
+                    { text: "()", color: "text-yellow-300" },
+                    { text: " ", color: "text-white" },
+                    { text: "=>", color: "text-purple-400" },
+                    { text: " ", color: "text-white" },
+                    { text: "{", color: "text-yellow-300" }
+                  ]} />
+                  <SimpleCodeLine number="02" indent={true} delay={0.05} parts={[
+                    { text: "const", color: "text-purple-400" },
+                    { text: " ", color: "text-white" },
+                    { text: "design", color: "text-blue-300" },
+                    { text: " ", color: "text-white" },
+                    { text: "=", color: "text-white" },
+                    { text: " ", color: "text-white" },
+                    { text: "useModernUI", color: "text-green-300" },
+                    { text: "()", color: "text-yellow-300" },
+                    { text: ";", color: "text-neutral-500" }
+                  ]} />
+                  <SimpleCodeLine number="03" indent={true} delay={0.1} parts={[
+                    { text: "const", color: "text-purple-400" },
+                    { text: " ", color: "text-white" },
+                    { text: "code", color: "text-blue-300" },
+                    { text: " ", color: "text-white" },
+                    { text: "=", color: "text-white" },
+                    { text: " ", color: "text-white" },
+                    { text: "writeCleanCode", color: "text-green-300" },
+                    { text: "(", color: "text-yellow-300" },
+                    { text: "design", color: "text-orange-300" },
+                    { text: ")", color: "text-yellow-300" },
+                    { text: ";", color: "text-neutral-500" }
+                  ]} />
+                  <SimpleCodeLine number="04" indent={true} delay={0.15} parts={[
+                    { text: "//", color: "text-neutral-500" },
+                    { text: " ", color: "text-white" },
+                    { text: "Optimisation & déploiement", color: "text-neutral-400 italic" }
+                  ]} />
+                  <SimpleCodeLine number="05" indent={true} delay={0.2} parts={[
+                    { text: "return", color: "text-purple-400" },
+                    { text: " ", color: "text-white" },
+                    { text: "deploy", color: "text-green-300" },
+                    { text: "(", color: "text-yellow-300" },
+                    { text: "code", color: "text-orange-300" },
+                    { text: ")", color: "text-yellow-300" },
+                    { text: ";", color: "text-neutral-500" }
+                  ]} />
+                  <SimpleCodeLine number="06" indent={false} delay={0.25} parts={[
+                    { text: "}", color: "text-yellow-300" },
+                    { text: ";", color: "text-neutral-500" }
+                  ]} />
+                </>
+              ) : (
+                <>
+                  {/* Line 1 */}
+                  <CodeLine
+                    number="01"
+                    progress={line1Progress}
+                    opacity={line1Opacity}
+                    indent={false}
+                    parts={[
+                      { text: "const", color: "text-purple-400" },
+                      { text: " ", color: "text-white" },
+                      { text: "createWebsite", color: "text-blue-300" },
+                      { text: " ", color: "text-white" },
+                      { text: "=", color: "text-white" },
+                      { text: " ", color: "text-white" },
+                      { text: "()", color: "text-yellow-300" },
+                      { text: " ", color: "text-white" },
+                      { text: "=>", color: "text-purple-400" },
+                      { text: " ", color: "text-white" },
+                      { text: "{", color: "text-yellow-300" }
+                    ]}
+                  />
 
-              {/* Line 2 */}
-              <CodeLine
-                number="02"
-                progress={line2Progress}
-                opacity={line2Opacity}
-                indent={true}
-                parts={[
-                  { text: "const", color: "text-purple-400" },
-                  { text: " ", color: "text-white" },
-                  { text: "design", color: "text-blue-300" },
-                  { text: " ", color: "text-white" },
-                  { text: "=", color: "text-white" },
-                  { text: " ", color: "text-white" },
-                  { text: "useModernUI", color: "text-green-300" },
-                  { text: "()", color: "text-yellow-300" },
-                  { text: ";", color: "text-neutral-500" }
-                ]}
-              />
+                  {/* Line 2 */}
+                  <CodeLine
+                    number="02"
+                    progress={line2Progress}
+                    opacity={line2Opacity}
+                    indent={true}
+                    parts={[
+                      { text: "const", color: "text-purple-400" },
+                      { text: " ", color: "text-white" },
+                      { text: "design", color: "text-blue-300" },
+                      { text: " ", color: "text-white" },
+                      { text: "=", color: "text-white" },
+                      { text: " ", color: "text-white" },
+                      { text: "useModernUI", color: "text-green-300" },
+                      { text: "()", color: "text-yellow-300" },
+                      { text: ";", color: "text-neutral-500" }
+                    ]}
+                  />
 
-              {/* Line 3 */}
-              <CodeLine
-                number="03"
-                progress={line3Progress}
-                opacity={line3Opacity}
-                indent={true}
-                parts={[
-                  { text: "const", color: "text-purple-400" },
-                  { text: " ", color: "text-white" },
-                  { text: "code", color: "text-blue-300" },
-                  { text: " ", color: "text-white" },
-                  { text: "=", color: "text-white" },
-                  { text: " ", color: "text-white" },
-                  { text: "writeCleanCode", color: "text-green-300" },
-                  { text: "(", color: "text-yellow-300" },
-                  { text: "design", color: "text-orange-300" },
-                  { text: ")", color: "text-yellow-300" },
-                  { text: ";", color: "text-neutral-500" }
-                ]}
-              />
+                  {/* Line 3 */}
+                  <CodeLine
+                    number="03"
+                    progress={line3Progress}
+                    opacity={line3Opacity}
+                    indent={true}
+                    parts={[
+                      { text: "const", color: "text-purple-400" },
+                      { text: " ", color: "text-white" },
+                      { text: "code", color: "text-blue-300" },
+                      { text: " ", color: "text-white" },
+                      { text: "=", color: "text-white" },
+                      { text: " ", color: "text-white" },
+                      { text: "writeCleanCode", color: "text-green-300" },
+                      { text: "(", color: "text-yellow-300" },
+                      { text: "design", color: "text-orange-300" },
+                      { text: ")", color: "text-yellow-300" },
+                      { text: ";", color: "text-neutral-500" }
+                    ]}
+                  />
 
-              {/* Line 4 */}
-              <CodeLine
-                number="04"
-                progress={line4Progress}
-                opacity={line4Opacity}
-                indent={true}
-                parts={[
-                  { text: "//", color: "text-neutral-500" },
-                  { text: " ", color: "text-white" },
-                  { text: "Optimisation & déploiement", color: "text-neutral-400 italic" }
-                ]}
-              />
+                  {/* Line 4 */}
+                  <CodeLine
+                    number="04"
+                    progress={line4Progress}
+                    opacity={line4Opacity}
+                    indent={true}
+                    parts={[
+                      { text: "//", color: "text-neutral-500" },
+                      { text: " ", color: "text-white" },
+                      { text: "Optimisation & déploiement", color: "text-neutral-400 italic" }
+                    ]}
+                  />
 
-              {/* Line 5 */}
-              <CodeLine
-                number="05"
-                progress={line5Progress}
-                opacity={line5Opacity}
-                indent={true}
-                parts={[
-                  { text: "return", color: "text-purple-400" },
-                  { text: " ", color: "text-white" },
-                  { text: "deploy", color: "text-green-300" },
-                  { text: "(", color: "text-yellow-300" },
-                  { text: "code", color: "text-orange-300" },
-                  { text: ")", color: "text-yellow-300" },
-                  { text: ";", color: "text-neutral-500" }
-                ]}
-              />
+                  {/* Line 5 */}
+                  <CodeLine
+                    number="05"
+                    progress={line5Progress}
+                    opacity={line5Opacity}
+                    indent={true}
+                    parts={[
+                      { text: "return", color: "text-purple-400" },
+                      { text: " ", color: "text-white" },
+                      { text: "deploy", color: "text-green-300" },
+                      { text: "(", color: "text-yellow-300" },
+                      { text: "code", color: "text-orange-300" },
+                      { text: ")", color: "text-yellow-300" },
+                      { text: ";", color: "text-neutral-500" }
+                    ]}
+                  />
 
-              {/* Line 6 */}
-              <CodeLine
-                number="06"
-                progress={line6Progress}
-                opacity={line6Opacity}
-                indent={false}
-                showCursor={true}
-                parts={[
-                  { text: "}", color: "text-yellow-300" },
-                  { text: ";", color: "text-neutral-500" }
-                ]}
-              />
+                  {/* Line 6 */}
+                  <CodeLine
+                    number="06"
+                    progress={line6Progress}
+                    opacity={line6Opacity}
+                    indent={false}
+                    showCursor={true}
+                    parts={[
+                      { text: "}", color: "text-yellow-300" },
+                      { text: ";", color: "text-neutral-500" }
+                    ]}
+                  />
+                </>
+              )}
             </div>
           </motion.div>
         </div>

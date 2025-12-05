@@ -6,8 +6,17 @@ import { Section } from "../components/ui/Section";
 import { Button } from "../components/ui/Button";
 import { Download, GraduationCap, Laptop, User, Briefcase, Linkedin } from "lucide-react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function AboutPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   return (
     <>
       <Section className="pt-32 pb-16">
@@ -29,20 +38,15 @@ export default function AboutPage() {
       <Section className="bg-neutral-50 dark:bg-neutral-900/30">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:items-stretch">
           {/* Profile 1 */}
-          <Tilt
-            tiltMaxAngleX={10}
-            tiltMaxAngleY={10}
-            perspective={1000}
-            scale={1.02}
-            transitionSpeed={2000}
-            gyroscope={true}
-            className="h-full"
-          >
-            <motion.div
-              initial={{ opacity: 1, x: 0 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="group relative h-full p-8 rounded-2xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-black border border-neutral-200 dark:border-white/10 hover:border-blue-500/50 transition-all duration-300 flex flex-col"
-            >
+          {isMobile ? (
+            <div className="h-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.4 }}
+                className="group relative h-full p-8 rounded-2xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-black border border-neutral-200 dark:border-white/10 transition-all duration-300 flex flex-col"
+              >
             <div className="w-24 h-24 rounded-full bg-neutral-200 dark:bg-neutral-800 mb-6 border-2 border-blue-500/30 group-hover:border-blue-500 transition-colors overflow-hidden relative">
               <Image
                 src="/images/louis.jpg"
@@ -80,23 +84,72 @@ export default function AboutPage() {
               </Button>
             </div>
             </motion.div>
-          </Tilt>
+          </div>
+          ) : (
+            <Tilt
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              perspective={1000}
+              scale={1.02}
+              transitionSpeed={2000}
+              gyroscope={true}
+              className="h-full"
+            >
+              <motion.div
+                initial={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="group relative h-full p-8 rounded-2xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-black border border-neutral-200 dark:border-white/10 hover:border-blue-500/50 transition-all duration-300 flex flex-col"
+              >
+              <div className="w-24 h-24 rounded-full bg-neutral-200 dark:bg-neutral-800 mb-6 border-2 border-blue-500/30 group-hover:border-blue-500 transition-colors overflow-hidden relative">
+                <Image
+                  src="/images/louis.jpg"
+                  alt="Louis"
+                  fill
+                  className="object-cover"
+                  style={{ transform: 'scale(2.0)', objectPosition: 'center 20%' }}
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-neutral-900 dark:text-white">Louis</h3>
+              <p className="text-blue-500 dark:text-blue-400 font-medium mb-4">CTO & Architecte Technique</p>
+              <p className="text-neutral-600 dark:text-neutral-400 mb-6 flex-grow">
+                Louis utilise les technologies les plus efficaces du marché pour que votre site soit ultra-performant et durable.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                {["Vitesse", "Référencement", "Architecture", "Optimisation"].map((skill) => (
+                  <span key={skill} className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-300 text-base border border-blue-500/20">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://www.linkedin.com/in/louis-winkelmuller-29a475256/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white transition-colors text-base font-medium"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+                <Button variant="outline" size="sm">
+                  <Download className="w-4 h-4 mr-2" />
+                  Télécharger CV
+                </Button>
+              </div>
+              </motion.div>
+            </Tilt>
+          )}
 
           {/* Profile 2 */}
-          <Tilt
-            tiltMaxAngleX={10}
-            tiltMaxAngleY={10}
-            perspective={1000}
-            scale={1.02}
-            transitionSpeed={2000}
-            gyroscope={true}
-            className="h-full"
-          >
-            <motion.div
-              initial={{ opacity: 1, x: 0 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="group relative h-full p-8 rounded-2xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-black border border-neutral-200 dark:border-white/10 hover:border-purple-500/50 transition-all duration-300 flex flex-col"
-            >
+          {isMobile ? (
+            <div className="h-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="group relative h-full p-8 rounded-2xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-black border border-neutral-200 dark:border-white/10 transition-all duration-300 flex flex-col"
+              >
             <div className="w-24 h-24 rounded-full bg-neutral-200 dark:bg-neutral-800 mb-6 border-2 border-purple-500/30 group-hover:border-purple-500 transition-colors overflow-hidden relative">
               <Image
                 src="/images/amaury.jpg"
@@ -134,7 +187,61 @@ export default function AboutPage() {
               </Button>
             </div>
             </motion.div>
-          </Tilt>
+          </div>
+          ) : (
+            <Tilt
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              perspective={1000}
+              scale={1.02}
+              transitionSpeed={2000}
+              gyroscope={true}
+              className="h-full"
+            >
+              <motion.div
+                initial={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="group relative h-full p-8 rounded-2xl bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-black border border-neutral-200 dark:border-white/10 hover:border-purple-500/50 transition-all duration-300 flex flex-col"
+              >
+              <div className="w-24 h-24 rounded-full bg-neutral-200 dark:bg-neutral-800 mb-6 border-2 border-purple-500/30 group-hover:border-purple-500 transition-colors overflow-hidden relative">
+                <Image
+                  src="/images/amaury.jpg"
+                  alt="Amaury"
+                  fill
+                  className="object-cover"
+                  style={{ transform: 'scale(2.5) translateY(6%)' }}
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-2 text-neutral-900 dark:text-white">Amaury</h3>
+              <p className="text-purple-500 dark:text-purple-400 font-medium mb-4">Chef de Projet & Designer UX</p>
+              <p className="text-neutral-600 dark:text-neutral-400 mb-6 flex-grow">
+                Amaury transforme vos besoins en une expérience utilisateur élégante et optimisée pour convertir vos visiteurs en clients.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                {["Design", "Relation Client", "Stratégie", "Conversion"].map((skill) => (
+                  <span key={skill} className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-300 text-base border border-purple-500/20">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://www.linkedin.com/in/amaury-allemand/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 hover:bg-purple-600 text-white transition-colors text-base font-medium"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+                <Button variant="outline" size="sm">
+                  <Download className="w-4 h-4 mr-2" />
+                  Télécharger CV
+                </Button>
+              </div>
+              </motion.div>
+            </Tilt>
+          )}
         </div>
       </Section>
 

@@ -4,10 +4,18 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import { Section } from "../components/ui/Section";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,9 +46,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 20 : 0 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: isMobile ? 0 : 0.2, duration: isMobile ? 0.3 : 0.5 }}
             className="space-y-8"
           >
             <div className="bg-neutral-100 dark:bg-neutral-900/50 p-8 rounded-2xl border border-neutral-200 dark:border-white/10">
@@ -93,9 +101,9 @@ export default function ContactPage() {
 
           {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : 20, y: isMobile ? 20 : 0 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: isMobile ? 0.1 : 0.4, duration: isMobile ? 0.3 : 0.5 }}
           >
             <form onSubmit={handleSubmit} className="bg-neutral-100 dark:bg-neutral-900/50 p-8 rounded-2xl border border-neutral-200 dark:border-white/10 space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
