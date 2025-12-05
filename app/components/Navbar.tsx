@@ -53,35 +53,38 @@ export function Navbar() {
   }, [isOpen]);
 
   const mobileMenu = mounted && isOpen ? createPortal(
-    <div className="fixed inset-0 z-[100] md:hidden">
-      {/* Backdrop */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={() => setIsOpen(false)}
-      />
+    <AnimatePresence>
+      <div className="fixed inset-0 z-[100] md:hidden">
+        {/* Backdrop */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        />
 
-      {/* Menu */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="absolute inset-0 bg-white dark:bg-neutral-900"
-      >
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-800">
-            <span className="text-xl font-bold text-neutral-900 dark:text-white">Menu</span>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-            >
-              <X className="w-6 h-6 text-neutral-600 dark:text-neutral-400" />
-            </button>
-          </div>
+        {/* Menu */}
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ type: "spring", damping: 25, stiffness: 200 }}
+          className="absolute inset-0 bg-white dark:bg-neutral-900"
+        >
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-800">
+              <span className="text-2xl font-bold text-neutral-900 dark:text-white">Menu</span>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                aria-label="Fermer le menu"
+              >
+                <X className="w-6 h-6 text-neutral-600 dark:text-neutral-400" />
+              </button>
+            </div>
 
           {/* Navigation Links */}
           <nav className="flex-1 overflow-y-auto py-6">
@@ -98,7 +101,7 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       className={cn(
-                        "block px-4 py-3 rounded-lg text-base font-medium transition-all relative overflow-hidden",
+                        "block px-4 py-3 rounded-lg text-lg font-medium transition-all relative overflow-hidden",
                         isActive
                           ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
                           : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
@@ -123,40 +126,42 @@ export function Navbar() {
           </div>
         </div>
       </motion.div>
-    </div>,
+      </div>
+    </AnimatePresence>,
     document.body
   ) : null;
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-[#f0f0f0]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-md border-neutral-200 dark:border-white/10"
-          : "bg-transparent"
+          ? "bg-white/70 dark:bg-black/70 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/20 border-b border-neutral-200/50 dark:border-white/10"
+          : "bg-white/40 dark:bg-black/40 backdrop-blur-lg border-b border-white/20 dark:border-white/5"
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <motion.div
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="p-2 rounded-lg bg-blue-600/10 border border-blue-500/20 group-hover:border-blue-500/50 transition-colors"
+              className="relative p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-all duration-300"
             >
-              <Code2 className="w-6 h-6 text-blue-500" />
+              <Code2 className="w-5 h-5 text-white" strokeWidth={2.5} />
+              <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
             <motion.span
               whileHover={{ scale: 1.02 }}
-              className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400"
+              className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 dark:from-white dark:via-neutral-200 dark:to-white"
             >
               DevAgency
             </motion.span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -164,26 +169,26 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "text-sm font-medium transition-colors relative group",
+                    "relative px-4 py-2 text-base font-semibold transition-all duration-300 rounded-lg group",
                     isActive
                       ? "text-neutral-900 dark:text-white"
                       : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                   )}
                 >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-lg"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
                   <motion.span
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ y: -1 }}
                     className="relative z-10"
                   >
                     {link.name}
                   </motion.span>
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeTab"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500/50 transition-all group-hover:w-full" />
+                  <span className="absolute inset-0 rounded-lg bg-neutral-100 dark:bg-neutral-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
               );
             })}
@@ -193,25 +198,32 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link href="/contact" className="hidden md:block">
-              <Button variant="primary" size="sm">
-                Nous Contacter
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 font-semibold"
+                >
+                  Nous Contacter
+                </Button>
+              </motion.div>
             </Link>
 
             <button
-              className="md:hidden p-2 text-neutral-400 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors"
+              type="button"
+              className="md:hidden p-2 text-neutral-400 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors relative z-50 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={isOpen}
             >
-              {isOpen ? <X /> : <Menu />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu Portal */}
-      <AnimatePresence>
-        {mobileMenu}
-      </AnimatePresence>
+      {mobileMenu}
     </nav>
   );
 }

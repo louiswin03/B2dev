@@ -46,8 +46,9 @@ export default function PortfolioPage() {
     <>
       <Section className="pt-32 pb-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">Nos Réalisations</h1>
@@ -62,9 +63,10 @@ export default function PortfolioPage() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.05, duration: 0.3 }}
               className="group relative overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 cursor-pointer hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-2"
             >
               {/* Image Placeholder */}
@@ -86,14 +88,14 @@ export default function PortfolioPage() {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <span className="text-blue-500 dark:text-blue-400 text-sm font-medium mb-2 block">{project.category}</span>
+                    <span className="text-blue-500 dark:text-blue-400 text-base font-medium mb-2 block">{project.category}</span>
                     <h3 className="text-xl font-bold text-neutral-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
                       {project.title}
                     </h3>
                   </div>
                 </div>
 
-                <p className="text-neutral-600 dark:text-neutral-400 mb-6 text-sm line-clamp-2">
+                <p className="text-neutral-600 dark:text-neutral-400 mb-6 text-base line-clamp-2">
                   {project.description}
                 </p>
 

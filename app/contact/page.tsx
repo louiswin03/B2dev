@@ -53,8 +53,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Email</h4>
-                    <p className="text-neutral-600 dark:text-neutral-400">contact@devagency.fr</p>
-                    <p className="text-neutral-500 dark:text-neutral-500 text-sm mt-1">Réponse rapide</p>
+                    <a
+                      href="mailto:contact@devagency.fr"
+                      className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    >
+                      contact@devagency.fr
+                    </a>
                   </div>
                 </div>
 
@@ -64,8 +68,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Téléphone</h4>
-                    <p className="text-neutral-600 dark:text-neutral-400">06 12 34 56 78</p>
-                    <p className="text-neutral-500 dark:text-neutral-500 text-sm mt-1">Du Lundi au Vendredi, 9h-18h</p>
+                    <a
+                      href="tel:+33682510468"
+                      className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    >
+                      06 82 51 04 68
+                    </a>
                   </div>
                 </div>
 
@@ -76,7 +84,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Localisation</h4>
                     <p className="text-neutral-600 dark:text-neutral-400">Paris & Île-de-France</p>
-                    <p className="text-neutral-500 dark:text-neutral-500 text-sm mt-1">Déplacement possible</p>
+                    
                   </div>
                 </div>
               </div>
@@ -92,7 +100,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="bg-neutral-100 dark:bg-neutral-900/50 p-8 rounded-2xl border border-neutral-200 dark:border-white/10 space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="firstname" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Prénom</label>
+                  <label htmlFor="firstname" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Prénom</label>
                   <input
                     type="text"
                     id="firstname"
@@ -102,7 +110,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="lastname" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Nom</label>
+                  <label htmlFor="lastname" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Nom</label>
                   <input
                     type="text"
                     id="lastname"
@@ -114,7 +122,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
+                <label htmlFor="email" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -125,7 +133,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Sujet</label>
+                <label htmlFor="subject" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Sujet</label>
                 <select
                   id="subject"
                   className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
@@ -137,7 +145,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Message</label>
+                <label htmlFor="message" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Message</label>
                 <textarea
                   id="message"
                   required
