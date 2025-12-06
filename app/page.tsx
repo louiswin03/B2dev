@@ -237,26 +237,35 @@ export default function Home() {
                 "Sites modernes et performants",
                 "Prix très compétitifs (profil junior)",
                 "Design sur-mesure et professionnel",
-                
+
               ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                  viewport={{ once: true, amount: 0.8 }}
-                  className="flex items-center gap-3 group"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                  >
+                isMobile ? (
+                  <div key={i} className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <span className="text-neutral-700 dark:text-neutral-300">
+                      {item}
+                    </span>
+                  </div>
+                ) : (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, duration: 0.4 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="flex items-center gap-3 group"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    </motion.div>
+                    <span className="text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+                      {item}
+                    </span>
                   </motion.div>
-                  <span className="text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
-                    {item}
-                  </span>
-                </motion.div>
+                )
               ))}
             </div>
             <div className="mt-8 flex justify-center">

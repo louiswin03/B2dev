@@ -123,28 +123,26 @@ export default function ServicesPage() {
               key={offer.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              className={`relative p-8 rounded-2xl border flex flex-col cursor-pointer transition-all duration-300 hover:-translate-y-2 ${
+              transition={{ delay: isMobile ? 0 : index * 0.1, duration: 0.4 }}
+              className={`relative p-8 rounded-2xl border flex flex-col cursor-pointer transition-all duration-300 ${
+                !isMobile ? 'hover:-translate-y-2' : ''
+              } ${
                 offer.recommended
-                  ? "bg-purple-50 dark:bg-white/5 border-purple-500/50 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20"
-                  : "bg-neutral-100 dark:bg-neutral-900/50 border-neutral-200 dark:border-white/10 hover:border-neutral-300 dark:hover:border-white/20 hover:shadow-lg hover:shadow-blue-500/10"
+                  ? `bg-purple-50 dark:bg-white/5 border-purple-500/50 shadow-lg shadow-purple-500/10 ${!isMobile ? 'hover:shadow-purple-500/20' : ''}`
+                  : `bg-neutral-100 dark:bg-neutral-900/50 border-neutral-200 dark:border-white/10 ${!isMobile ? 'hover:border-neutral-300 dark:hover:border-white/20 hover:shadow-lg hover:shadow-blue-500/10' : ''}`
               }`}
             >
               {offer.recommended && (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-base font-medium"
-                >
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-base font-medium">
                   Recommandé
-                </motion.div>
+                </div>
               )}
 
               <div className="mb-6">
                 <div
                   className={cn(
-                    "w-14 h-14 rounded-xl flex items-center justify-center mb-6 border transition-transform duration-200 hover:scale-110",
+                    "w-14 h-14 rounded-xl flex items-center justify-center mb-6 border",
+                    !isMobile && "transition-transform duration-200 hover:scale-110",
                     offer.color === "blue" && "bg-blue-500/10 border-blue-500/20",
                     offer.color === "purple" && "bg-purple-500/10 border-purple-500/20",
                     offer.color === "pink" && "bg-pink-500/10 border-pink-500/20"
@@ -153,12 +151,14 @@ export default function ServicesPage() {
                   {offer.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-2 text-neutral-900 dark:text-white">{offer.title}</h3>
-                <p className="text-neutral-600 dark:text-neutral-400 h-12">{offer.description}</p>
+                <p className="text-neutral-600 dark:text-neutral-400">{offer.description}</p>
               </div>
 
               <div className="mb-8">
-                <span className="text-4xl font-bold text-neutral-900 dark:text-white">{offer.price}</span>
-                {offer.price !== "Devis" && <span className="text-neutral-500 dark:text-neutral-500 ml-2">HT</span>}
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <span className="text-4xl font-bold text-neutral-900 dark:text-white">{offer.price}</span>
+                  {offer.price !== "Devis" && <span className="text-neutral-500 dark:text-neutral-500">HT</span>}
+                </div>
                 {offer.price !== "Devis" && (
                   <p className="text-base text-green-600 dark:text-green-400 mt-2 font-medium">
                     Soit {parseInt(offer.price.replace('€', '')) / 2}€ après aide IDF*

@@ -60,7 +60,8 @@ export function Navbar() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          transition={{ duration: 0.2 }}
+          className="absolute inset-0 bg-black/60"
           onClick={() => setIsOpen(false)}
         />
 
@@ -69,7 +70,7 @@ export function Navbar() {
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
-          transition={{ type: "spring", damping: 25, stiffness: 200 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           className="absolute inset-0 bg-white dark:bg-neutral-900"
         >
           <div className="flex flex-col h-full">
@@ -89,28 +90,23 @@ export function Navbar() {
           {/* Navigation Links */}
           <nav className="flex-1 overflow-y-auto py-6">
             <div className="space-y-2 px-4">
-              {navLinks.map((link, index) => {
+              {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
+                  <div key={link.name}>
                     <Link
                       href={link.href}
                       className={cn(
-                        "block px-4 py-3 rounded-lg text-lg font-medium transition-all relative overflow-hidden",
+                        "block px-4 py-3 rounded-lg text-lg font-medium transition-colors relative overflow-hidden",
                         isActive
-                          ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
-                          : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                          ? "bg-blue-500 text-white"
+                          : "text-neutral-700 dark:text-neutral-300 active:bg-neutral-100 dark:active:bg-neutral-800"
                       )}
                       onClick={() => setIsOpen(false)}
                     >
                       {link.name}
                     </Link>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
