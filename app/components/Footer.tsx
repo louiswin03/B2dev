@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Code2, Github, Linkedin, Twitter, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Phone } from "lucide-react";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
@@ -8,9 +9,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Code2 className="w-6 h-6 text-blue-500" />
-              <span className="text-xl font-bold text-neutral-900 dark:text-white">DevAgency</span>
+            <Link href="/" className="flex items-center text-neutral-900 dark:text-white">
+              <Logo className="h-[40px] w-auto" />
             </Link>
             <p className="text-neutral-600 dark:text-neutral-400 text-base leading-relaxed">
               Nous créons des expériences web exceptionnelles pour les petites entreprises. 
@@ -34,7 +34,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/realisations" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
-                  Réalisations
+                  Notre travail
                 </Link>
               </li>
               <li>
@@ -50,18 +50,18 @@ export function Footer() {
             <h3 className="font-semibold text-neutral-900 dark:text-white mb-4">Légal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
+                <Link href="/mentions-legales" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
                   Mentions Légales
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
+                <Link href="/politique-confidentialite" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
                   Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
-                  CGV
+                <Link href="/cgs" className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base">
+                  CGS
                 </Link>
               </li>
             </ul>
@@ -82,11 +82,11 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@devagency.fr"
+                  href="mailto:AmauryAll.b2dev@gmail.com"
                   className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-base"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>contact@devagency.fr</span>
+                  <span>AmauryAll.b2dev@gmail.com</span>
                 </a>
               </li>
             </ul>
@@ -106,7 +106,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-neutral-200 dark:border-white/10 text-center">
           <p className="text-neutral-500 dark:text-neutral-500 text-base">
-            © {new Date().getFullYear()} DevAgency. Tous droits réservés.
+            © {new Date().getFullYear()} B2dev. Tous droits réservés.
           </p>
         </div>
       </div>

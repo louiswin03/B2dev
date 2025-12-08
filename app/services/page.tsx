@@ -19,10 +19,11 @@ const offers = [
       "1 à 5 pages",
       "Responsive (Mobile & Tablette)",
       "Optimisation SEO de base",
-      
+
     ],
     recommended: false,
-    color: "blue"
+    color: "blue",
+    serviceId: "vitrine"
   },
   {
     title: "Pack Pro",
@@ -35,10 +36,11 @@ const offers = [
       "Base de données avancée",
       "Google Maps & Avis",
       "SEO Avancé",
-      
+
     ],
     recommended: true,
-    color: "purple"
+    color: "purple",
+    serviceId: "pro"
   },
   {
     title: "Personnalisé",
@@ -54,7 +56,8 @@ const offers = [
     ],
     recommended: false,
     color: "pink",
-    note: "Jusqu'à 1 500€ d'aide*"
+    note: "Jusqu'à 1 500€ d'aide*",
+    serviceId: "personnalise"
   }
 ];
 
@@ -185,9 +188,9 @@ export default function ServicesPage() {
                 ))}
               </ul>
 
-              <Link href="/contact" className="w-full">
-                <Button 
-                  variant={offer.recommended ? "secondary" : "outline"} 
+              <Link href={`/contact?service=${offer.serviceId}`} className="w-full">
+                <Button
+                  variant={offer.recommended ? "secondary" : "outline"}
                   className="w-full"
                 >
                   Choisir cette offre

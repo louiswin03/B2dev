@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/Button";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { createPortal } from "react-dom";
+import { Logo } from "./Logo";
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle").then(mod => ({ default: mod.ThemeToggle })), {
   ssr: false,
@@ -18,7 +19,7 @@ const ThemeToggle = dynamic(() => import("./ThemeToggle").then(mod => ({ default
 const navLinks = [
   { name: "Accueil", href: "/" },
   { name: "À Propos", href: "/apropos" },
-  { name: "Réalisations", href: "/realisations" },
+  { name: "Notre travail", href: "/realisations" },
   { name: "Services", href: "/services" },
 ];
 
@@ -139,21 +140,14 @@ export function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center group">
             <motion.div
-              whileHover={{ scale: 1.05, rotate: 5 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25 group-hover:shadow-blue-500/40 transition-all duration-300"
+              className="h-14 w-auto text-neutral-900 dark:text-white transition-all duration-300"
             >
-              <Code2 className="w-5 h-5 text-white" strokeWidth={2.5} />
-              <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Logo className="h-14 w-auto" />
             </motion.div>
-            <motion.span
-              whileHover={{ scale: 1.02 }}
-              className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-900 dark:from-white dark:via-neutral-200 dark:to-white"
-            >
-              DevAgency
-            </motion.span>
           </Link>
 
           {/* Desktop Nav */}
@@ -172,11 +166,7 @@ export function Navbar() {
                   )}
                 >
                   {isActive && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-lg"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
+                    <div className="absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-lg" />
                   )}
                   <motion.span
                     whileHover={{ y: -1 }}
@@ -184,7 +174,9 @@ export function Navbar() {
                   >
                     {link.name}
                   </motion.span>
-                  <span className="absolute inset-0 rounded-lg bg-neutral-100 dark:bg-neutral-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {!isActive && (
+                    <span className="absolute inset-0 rounded-lg bg-neutral-100 dark:bg-neutral-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  )}
                 </Link>
               );
             })}

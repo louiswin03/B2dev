@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { Section } from "../components/ui/Section";
-import { Button } from "../components/ui/Button";
-import { Download, GraduationCap, Laptop, User, Briefcase, Linkedin } from "lucide-react";
+import { GraduationCap, Laptop, User, Briefcase, Linkedin } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -29,8 +28,10 @@ export default function AboutPage() {
             L'excellence technique au service de <span className="text-blue-500">votre vision</span>
           </h1>
           <p className="text-xl text-neutral-600 dark:text-neutral-400">
-            Nous sommes deux étudiants en école d'ingénieur passionnés par le développement web.
-            Notre mission : rendre le web accessible et performant pour tous les professionnels.
+            Nous sommes deux jeunes ingénieurs passionnés par le développement web.            
+          </p>
+          <p className="text-xl text-neutral-600 dark:text-neutral-400">          
+            Notre mission : permettre aux petites et moyennes entreprises de se démarquer par une présence digitale forte.
           </p>
         </motion.div>
       </Section>
@@ -78,10 +79,7 @@ export default function AboutPage() {
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
-              <Button variant="outline" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Télécharger CV
-              </Button>
+              
             </div>
             </motion.div>
           </div>
@@ -131,10 +129,6 @@ export default function AboutPage() {
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
                 </a>
-                <Button variant="outline" size="sm">
-                  <Download className="w-4 h-4 mr-2" />
-                  Télécharger CV
-                </Button>
               </div>
               </motion.div>
             </Tilt>
@@ -181,10 +175,6 @@ export default function AboutPage() {
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
-              <Button variant="outline" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Télécharger CV
-              </Button>
             </div>
             </motion.div>
           </div>
@@ -234,10 +224,6 @@ export default function AboutPage() {
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
                 </a>
-                <Button variant="outline" size="sm">
-                  <Download className="w-4 h-4 mr-2" />
-                  Télécharger CV
-                </Button>
               </div>
               </motion.div>
             </Tilt>
@@ -326,7 +312,7 @@ export default function AboutPage() {
                     </div>
                     <h5 className="font-bold text-lg mb-2 text-neutral-900 dark:text-white">Safran</h5>
                     <p className="text-neutral-600 dark:text-neutral-400 text-base">
-                      Analyse des processus métier et accompagnement dans la transformation digitale d'un leader mondial de l'aéronautique et de la défense.
+                      Optimisation de la stratégie commerciale par le biais des données. 
                     </p>
                   </motion.div>
                 </div>
@@ -344,7 +330,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">Lancement de B2dev</h3>
                 <p className="text-neutral-500 dark:text-neutral-500 text-base mb-2">2025</p>
                 <p className="text-neutral-600 dark:text-neutral-400">
-                  Décision de mettre nos compétences au service des entreprises locales pour financer nos études et gagner en expérience réelle.
+                  Décision de mettre nos compétences au service des entreprises locales pour gagner en expérience réelle et travailler dans un secteur qui nous passionne.
                 </p>
               </div>
             </div>

@@ -230,7 +230,7 @@ export default function Home() {
             transition={{ duration: isMobile ? 0.3 : 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900 dark:text-white">
-              Pourquoi choisir <span className="text-blue-500">DevAgency</span> ?
+              Pourquoi choisir <span className="text-blue-500">B2dev</span> ?
             </h2>
             <div className="space-y-4">
               {[
@@ -460,8 +460,10 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Process Section removed per request */}
+
       {/* State Aid Section */}
-      <Section>
+      <Section className="bg-neutral-50 dark:bg-neutral-900/30">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

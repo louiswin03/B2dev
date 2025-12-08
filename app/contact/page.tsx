@@ -5,10 +5,15 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import { Section } from "../components/ui/Section";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const searchParams = useSearchParams();
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [isMobile, setIsMobile] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [selectedService, setSelectedService] = useState("");
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -17,13 +22,63 @@ export default function ContactPage() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    // Pré-sélectionner le service depuis l'URL
+    const serviceParam = searchParams.get('service');
+    if (serviceParam) {
+      // Mapper les serviceId aux valeurs du select
+      const serviceMap: { [key: string]: string } = {
+        'vitrine': 'Vitrine',
+        'pro': 'Pro',
+        'personnalise': 'Personnalisé'
+      };
+      setSelectedService(serviceMap[serviceParam] || '');
+    }
+  }, [searchParams]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
-    // Simulate submission
-    setTimeout(() => {
+    setErrorMessage("");
+
+    // Stocker la référence au formulaire avant l'appel async
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Préparer les données pour EmailJS (correspondant au template)
+    const templateParams = {
+      firstname: formData.get('firstname'),
+      lastname: formData.get('lastname'),
+      emaill: formData.get('email'), // Note: "emaill" avec 2 'l' comme dans votre template
+      subject: formData.get('subject'),
+      service: formData.get('service'),
+      message: formData.get('message'),
+      time: new Date().toLocaleString('fr-FR', {
+        dateStyle: 'short',
+        timeStyle: 'short'
+      })
+    };
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
       setFormStatus("success");
-    }, 1500);
+      // Réinitialiser le formulaire
+      form.reset();
+      setSelectedService("");
+      // Retour à l'état idle après 5 secondes
+      setTimeout(() => setFormStatus("idle"), 5000);
+    } catch (error) {
+      console.error('Erreur EmailJS:', error);
+      setFormStatus("error");
+      setErrorMessage("Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.");
+      setTimeout(() => setFormStatus("idle"), 5000);
+    }
   };
 
   return (
@@ -35,10 +90,24 @@ export default function ContactPage() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">Contactez-nous</h1>
-          <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-6">
             Vous avez un projet en tête ? N'hésitez pas à nous écrire. 
             Devis gratuit et réponse sous 24h.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-base">
+            <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
+              <span className="text-green-500">✓</span>
+              <span>Devis 100% gratuit</span>
+            </div>
+            <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
+              <span className="text-green-500">✓</span>
+              <span>Réponse sous 24h</span>
+            </div>
+            <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
+              <span className="text-green-500">✓</span>
+              <span>Sans engagement</span>
+            </div>
+          </div>
         </motion.div>
       </Section>
 
@@ -62,10 +131,10 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Email</h4>
                     <a
-                      href="mailto:contact@devagency.fr"
+                      href="mailto:AmauryAll.b2dev@gmail.com"
                       className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
-                      contact@devagency.fr
+                      AmauryAll.b2dev@gmail.com
                     </a>
                   </div>
                 </div>
@@ -112,6 +181,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     id="firstname"
+                    name="firstname"
                     required
                     className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                     placeholder="Jean"
@@ -122,6 +192,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     id="lastname"
+                    name="lastname"
                     required
                     className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                     placeholder="Dupont"
@@ -134,6 +205,7 @@ export default function ContactPage() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
                   className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                   placeholder="jean.dupont@email.com"
@@ -141,14 +213,35 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-2">
+                <label htmlFor="service" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Type de service</label>
+                <select
+                  id="service"
+                  name="service"
+                  required
+                  value={selectedService}
+                  onChange={(e) => setSelectedService(e.target.value)}
+                  className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                >
+                  <option value="">Sélectionnez un service</option>
+                  <option value="Vitrine">Site Vitrine - 990€</option>
+                  <option value="Pro">Pack Pro - 1490€</option>
+                  <option value="Personnalisé">Site Personnalisé - Sur mesure</option>
+                  <option value="Autre">Autre / Demande d'information</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
                 <label htmlFor="subject" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Sujet</label>
                 <select
                   id="subject"
+                  name="subject"
+                  required
                   className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                 >
-                  <option>Demande de devis</option>
-                  <option>Renseignement</option>
-                  <option>Autre</option>
+                  <option value="">Sélectionnez un sujet</option>
+                  <option value="Demande de devis">Demande de devis</option>
+                  <option value="Renseignement">Renseignement</option>
+                  <option value="Autre">Autre</option>
                 </select>
               </div>
 
@@ -156,6 +249,7 @@ export default function ContactPage() {
                 <label htmlFor="message" className="text-base font-medium text-neutral-700 dark:text-neutral-300">Message</label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={4}
                   className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
@@ -163,9 +257,15 @@ export default function ContactPage() {
                 />
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full" 
+              {errorMessage && (
+                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-600 dark:text-red-400 text-sm">
+                  {errorMessage}
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full"
                 disabled={formStatus !== "idle"}
               >
                 {formStatus === "idle" && (
@@ -175,7 +275,8 @@ export default function ContactPage() {
                   </>
                 )}
                 {formStatus === "submitting" && "Envoi en cours..."}
-                {formStatus === "success" && "Message envoyé !"}
+                {formStatus === "success" && "✓ Message envoyé !"}
+                {formStatus === "error" && "Erreur d'envoi"}
               </Button>
             </form>
           </motion.div>
