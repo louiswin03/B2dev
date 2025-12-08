@@ -1,0 +1,8 @@
+/* Fade-in effect for images */
+.fade-in-image {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.fade-in-image.loaded {
+  opacity: 1;
+}
