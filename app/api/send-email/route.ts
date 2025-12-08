@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization of Resend client to avoid constructing it at module
+// evaluation time (which breaks the build when the API key is not set).
+function getResendClient(): Resend | null {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return null;
+  return new Resend(key);
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,6 +20,12 @@ export async function POST(request: NextRequest) {
         { error: 'Tous les champs sont requis' },
         { status: 400 }
       );
+    }
+
+    const resend = getResendClient();
+    if (!resend) {
+      console.error('Resend API key is missing. Set RESEND_API_KEY in environment variables.');
+      return NextResponse.json({ error: 'Missing Resend API key' }, { status: 500 });
     }
 
     const data = await resend.emails.send({
