@@ -6,6 +6,7 @@ import { Footer } from "./components/Footer";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import { CookieConsentProvider } from "./contexts/CookieConsentContext";
 import { CookieBanner } from "./components/CookieBanner";
+import { LocalBusinessSchema } from "./components/LocalBusinessSchema";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
@@ -13,7 +14,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "B2dev - Création de sites web pour artisans et PME | Paris & Île-de-France",
+  title: {
+    default: "Création de Sites Web pour Artisans & PME | B2dev | Paris & Île-de-France",
+    template: "%s | B2dev"
+  },
   description: "Agence web fondée par des ingénieurs. Sites vitrines, e-commerce et sur mesure pour coiffeurs, restaurants, artisans. Prix compétitifs, jusqu'à 50% financé par la Région IDF.",
   keywords: ["création site web", "site vitrine", "site e-commerce", "développeur web Paris", "agence web", "site internet artisan", "chèque numérique", "aide région île-de-france"],
   authors: [{ name: "B2dev" }],
@@ -80,59 +84,7 @@ export default function RootLayout({
             `,
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "B2dev",
-              "description": "Agence web spécialisée dans la création de sites internet pour artisans et PME",
-              "url": "https://b2dev.fr",
-              "logo": "https://b2dev.fr/logo.png",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Paris",
-                "addressRegion": "Île-de-France",
-                "addressCountry": "FR"
-              },
-              "telephone": "+33682510468",
-              "email": "AmauryAll.b2dev@gmail.com",
-              "priceRange": "€€",
-              "sameAs": [
-                "https://www.linkedin.com/company/b2dev"
-              ],
-              "areaServed": {
-                "@type": "GeoCircle",
-                "geoMidpoint": {
-                  "@type": "GeoCoordinates",
-                  "latitude": "48.8566",
-                  "longitude": "2.3522"
-                },
-                "geoRadius": "50000"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "5",
-                "reviewCount": "15"
-              },
-              "founder": [
-                {
-                  "@type": "Person",
-                  "name": "Louis Winkelmuller",
-                  "jobTitle": "CTO & Architecte Technique",
-                  "alumniOf": "ISEP"
-                },
-                {
-                  "@type": "Person",
-                  "name": "Amaury Allemand",
-                  "jobTitle": "Chef de Projet & Designer UX",
-                  "alumniOf": "ISEP"
-                }
-              ]
-            })
-          }}
-        />
+        <LocalBusinessSchema />
       </head>
       <body
         className={`${jetbrainsMono.variable} antialiased bg-background dark:bg-background min-h-screen flex flex-col`}

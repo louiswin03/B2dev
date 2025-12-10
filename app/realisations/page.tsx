@@ -29,7 +29,7 @@ const projects = [
 		link: "#",
 	},
 	{
-		title: "Site tout en 1 de cryptommonnaies",
+		title: "Site tout en 1 de cryptonnaies",
 		category: "Projet personnel",
 		description:
 			"Plateforme de cryptomonnaies qui affiche les prix en temps réel, les graphiques TradingView, permet de faire des backtests avec des stratégies avancées et de connecter ses portefeuilles. Gestion des comptes utilisateurs avec base de données avancée.",
