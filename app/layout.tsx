@@ -29,6 +29,15 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL('https://b2dev.fr'),
+  icons: {
+    icon: [
+      { url: '/images/B2dev_simple.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' }
+    ],
+    apple: [
+      { url: '/images/B2dev_simple.svg' }
+    ]
+  },
   openGraph: {
     title: "B2dev - Création de sites web professionnels",
     description: "Sites modernes et ultra-performants pour artisans et PME. Qualité professionnelle à prix abordable.",
