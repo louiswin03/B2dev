@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Notre Équipe | B2dev",
     description: "Deux ingénieurs passionnés au service de votre projet digital.",
-    url: 'https://b2dev.fr/apropos',
+    url: 'https://b2dev.pro/apropos',
     siteName: 'B2dev',
     locale: 'fr_FR',
     type: 'website',

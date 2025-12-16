@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://b2dev.fr'
+  const baseUrl = 'https://b2dev.pro'
   const currentDate = new Date()
 
   // Pages statiques du site

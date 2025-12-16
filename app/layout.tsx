@@ -28,11 +28,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://b2dev.fr'),
+  metadataBase: new URL('https://b2dev.pro'),
   openGraph: {
     title: "B2dev - Création de sites web professionnels",
     description: "Sites modernes et ultra-performants pour artisans et PME. Qualité professionnelle à prix abordable.",
-    url: 'https://b2dev.fr',
+    url: 'https://b2dev.pro',
     siteName: 'B2dev',
     locale: 'fr_FR',
     type: 'website',

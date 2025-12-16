@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nos Offres & Tarifs | B2dev",
     description: "Sites modernes et performants pour artisans et PME. Prix compétitifs, jusqu'à 50% financé.",
-    url: 'https://b2dev.fr/services',
+    url: 'https://b2dev.pro/services',
     siteName: 'B2dev',
     locale: 'fr_FR',
     type: 'website',

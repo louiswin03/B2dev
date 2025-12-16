@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contactez-nous | B2dev",
     description: "Devis gratuit sous 24h. Sans engagement.",
-    url: 'https://b2dev.fr/contact',
+    url: 'https://b2dev.pro/contact',
     siteName: 'B2dev',
     locale: 'fr_FR',
     type: 'website',
