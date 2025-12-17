@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "Création de Sites Web pour Artisans & PME | B2dev | Paris & Île-de-France",
     template: "%s | B2dev"
   },
-  description: "Agence web fondée par des ingénieurs. Sites vitrines, e-commerce et sur mesure pour coiffeurs, restaurants, artisans. Prix compétitifs, jusqu'à 50% financé par la Région IDF.",
+  description: "Agence web fondée par des ingénieurs. Sites vitrines, e-commerce et sur mesure pour coiffeurs, restaurants, artisans. Prix compétitifs, aide régionale possible jusqu'à 50%* (sous réserve d'éligibilité).",
   keywords: ["création site web", "site vitrine", "site e-commerce", "développeur web Paris", "agence web", "site internet artisan", "chèque numérique", "aide région île-de-france"],
   authors: [{ name: "B2dev" }],
   creator: "B2dev",

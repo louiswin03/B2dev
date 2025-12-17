@@ -64,7 +64,7 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 						Sites modernes et performants. Prix compétitifs grâce à notre profil junior.
 					</p>
 					<p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">
-						💰 Aide de l'État disponible : jusqu'à 50% remboursé pour les artisans et commerçants IDF
+						💰 Aide possible : jusqu'à 50% remboursé* pour les artisans et commerçants IDF
 					</p>
 				</motion.div>
 			</Section>
@@ -156,6 +156,9 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 						);
 					})}
 				</div>
+				<p className="text-xs text-neutral-500 dark:text-neutral-400 mt-6 text-center">
+					*Sous réserve de conditions d'éligibilité (Région Île-de-France) et d'acceptation du dossier par l'organisme. B2dev n'assure ni ne garantit l'obtention de l'aide.
+				</p>
 			</Section>
 
 			{/* FAQ Section */}

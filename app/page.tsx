@@ -191,7 +191,7 @@ export default function Home() {
               et commerçants. Qualité professionnelle à prix abordable.
             </p>
             <p className="text-lg text-blue-600 dark:text-blue-400 max-w-2xl mx-auto mb-10 font-semibold">
-              💰 Jusqu'à 50% de votre site financé par la Région Île-de-France
+              💰 Aide possible : jusqu'à 50% financé* par la Région Île-de-France
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
@@ -473,7 +473,7 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-neutral-900 dark:text-white">
-              Votre site web <span className="text-blue-500">financé jusqu'à 50%</span>
+              Votre site web <span className="text-blue-500">financé jusqu'à 50%*</span>
             </h2>
             <p className="text-xl text-neutral-600 dark:text-neutral-400">
               Grâce au Chèque Numérique de la Région Île-de-France
@@ -493,7 +493,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-neutral-900 dark:text-white">Jusqu'à 1 500€</h3>
                 <p className="text-neutral-600 dark:text-neutral-400">
-                  La Région prend en charge 50% du montant HT de votre site web
+                  Jusqu'à 50% du montant HT pris en charge*
                 </p>
               </motion.div>
             </CardWithBlob>
@@ -527,7 +527,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-neutral-900 dark:text-white">Exemple concret</h3>
                 <p className="text-neutral-600 dark:text-neutral-400">
-                  Site à 1 800€ HT = vous payez seulement 900€ après aide
+                  Exemple : site à 1 800€ HT → 900€ après aide*
                 </p>
               </motion.div>
             </CardWithBlob>
@@ -553,7 +553,7 @@ export default function Home() {
                   <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
                   <div>
                     <p className="font-semibold text-neutral-900 dark:text-white">Vous recevez un devis détaillé</p>
-                    <p className="text-neutral-600 dark:text-neutral-400">Parfaitement éligible au Chèque Numérique</p>
+                    <p className="text-neutral-600 dark:text-neutral-400">Dossier éligible au Chèque Numérique (si conditions remplies)</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -567,11 +567,14 @@ export default function Home() {
                   <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
                   <div>
                     <p className="font-semibold text-neutral-900 dark:text-white">Vous êtes remboursé</p>
-                    <p className="text-neutral-600 dark:text-neutral-400">50% du montant HT après présentation de la facture acquittée</p>
+                    <p className="text-neutral-600 dark:text-neutral-400">Jusqu'à 50% du montant HT après facture acquittée*</p>
                   </div>
                 </div>
               </div>
             </motion.div>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-6">
+              *Sous réserve de conditions d'éligibilité (Région Île-de-France) et d'acceptation du dossier par l'organisme. B2dev n'assure ni ne garantit l'obtention de l'aide.
+            </p>
           </CardWithBlob>
         </div>
       </Section>
