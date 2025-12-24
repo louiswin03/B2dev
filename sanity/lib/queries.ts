@@ -6,8 +6,28 @@ export const projectsQuery = `*[_type == "project" && published == true] | order
   title,
   slug,
   description,
-  mainImage,
-  gallery,
+  mainImage {
+    ...,
+    asset-> {
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    }
+  },
+  gallery[] {
+    ...,
+    asset-> {
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    }
+  },
   tags,
   projectUrl,
   order

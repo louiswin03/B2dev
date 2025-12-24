@@ -1,6 +1,6 @@
 import { client } from '@/sanity/lib/client'
 import { projectsQuery } from '@/sanity/lib/queries'
-import { urlFor } from '@/sanity/lib/image'
+import { urlFor, getLqip } from '@/sanity/lib/image'
 import PortfolioClient from './PortfolioClient'
 
 interface SanityProject {
@@ -11,6 +11,11 @@ interface SanityProject {
 	gallery: any[]
 	tags: string[]
 	projectUrl?: string
+}
+
+interface ProcessedImage {
+	url: string
+	lqip?: string
 }
 
 async function getProjects() {
@@ -24,11 +29,22 @@ async function getProjects() {
 			_id: project._id,
 			title: project.title,
 			description: project.description,
-			mainImage: project.mainImage ? urlFor(project.mainImage).fit('max').auto('format').url() : '',
+			mainImage: project.mainImage
+				? {
+					url: urlFor(project.mainImage).fit('max').auto('format').quality(75).url(),
+					lqip: getLqip(project.mainImage)
+				}
+				: { url: '', lqip: undefined },
 			gallery: project.gallery && project.gallery.length > 0
-				? project.gallery.map(img => urlFor(img).width(1920).fit('max').auto('format').url())
+				? project.gallery.map(img => ({
+					url: urlFor(img).width(1920).fit('max').auto('format').quality(75).url(),
+					lqip: getLqip(img)
+				}))
 				: project.mainImage
-					? [urlFor(project.mainImage).width(1920).fit('max').auto('format').url()]
+					? [{
+						url: urlFor(project.mainImage).width(1920).fit('max').auto('format').quality(75).url(),
+						lqip: getLqip(project.mainImage)
+					}]
 					: [],
 			tags: project.tags || [],
 			projectUrl: project.projectUrl,

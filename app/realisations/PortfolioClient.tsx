@@ -8,12 +8,17 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import "./realisations.css";
 
+interface ProcessedImage {
+	url: string;
+	lqip?: string;
+}
+
 interface Project {
 	_id: string;
 	title: string;
 	description: string;
-	mainImage: string;
-	gallery: string[];
+	mainImage: ProcessedImage;
+	gallery: ProcessedImage[];
 	tags: string[];
 	projectUrl?: string;
 }
@@ -32,6 +37,26 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 	const [lightboxOpen, setLightboxOpen] = useState(false);
 	const [lightboxProject, setLightboxProject] = useState<number | null>(null);
 	const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
+
+	// Précharger les images adjacentes pour un chargement instantané
+	useEffect(() => {
+		projects.forEach((project, projectIndex) => {
+			const currentIndex = currentImageIndices[projectIndex] || 0;
+			const totalImages = project.gallery.length;
+
+			if (totalImages > 1) {
+				// Précharger l'image suivante
+				const nextIndex = (currentIndex + 1) % totalImages;
+				const nextImage = new window.Image();
+				nextImage.src = project.gallery[nextIndex].url;
+
+				// Précharger l'image précédente
+				const prevIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+				const prevImage = new window.Image();
+				prevImage.src = project.gallery[prevIndex].url;
+			}
+		});
+	}, [currentImageIndices, projects]);
 
 	useEffect(() => {
 		const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -155,14 +180,21 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 								<div
 									className="relative h-64 overflow-hidden cursor-pointer"
 									onClick={(e) => openLightbox(index, currentImageIndex, e)}
+									style={{
+										backgroundImage: currentImage.lqip ? `url(${currentImage.lqip})` : undefined,
+										backgroundSize: 'cover',
+										backgroundPosition: 'center',
+									}}
 								>
-									<div className="absolute inset-0 bg-neutral-800 animate-pulse" />
+									{!currentImage.lqip && <div className="absolute inset-0 bg-neutral-800 animate-pulse" />}
 									<Image
-										src={currentImage}
+										src={currentImage.url}
 										alt={`${project.title} - Image ${currentImageIndex + 1}`}
 										fill
 										className={`object-cover fade-in-image ${!isMobile ? 'transition-transform duration-500 group-hover:scale-110' : ''}`}
 										onLoadingComplete={img => img.classList.add('loaded')}
+										placeholder={currentImage.lqip ? "blur" : "empty"}
+										blurDataURL={currentImage.lqip}
 									/>
 
 									{/* Navigation buttons - Only show if more than 1 image */}
@@ -291,13 +323,23 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 							exit={{ scale: 0.9 }}
 							className="relative max-w-7xl max-h-[90vh] w-full h-full mx-4"
 							onClick={(e) => e.stopPropagation()}
+							style={{
+								backgroundImage: projects[lightboxProject].gallery[lightboxImageIndex].lqip
+									? `url(${projects[lightboxProject].gallery[lightboxImageIndex].lqip})`
+									: undefined,
+								backgroundSize: 'contain',
+								backgroundPosition: 'center',
+								backgroundRepeat: 'no-repeat',
+							}}
 						>
 							<Image
-								src={projects[lightboxProject].gallery[lightboxImageIndex]}
+								src={projects[lightboxProject].gallery[lightboxImageIndex].url}
 								alt={`${projects[lightboxProject].title} - Image ${lightboxImageIndex + 1}`}
 								fill
 								className="object-contain fade-in-image"
 								onLoadingComplete={img => img.classList.add('loaded')}
+								placeholder={projects[lightboxProject].gallery[lightboxImageIndex].lqip ? "blur" : "empty"}
+								blurDataURL={projects[lightboxProject].gallery[lightboxImageIndex].lqip}
 							/>
 						</motion.div>
 
