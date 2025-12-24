@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Conditions Générales de Services",
   description: "Conditions générales de services de B2dev. Modalités de prestation, tarifs et garanties.",
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
 };
