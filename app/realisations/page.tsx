@@ -21,7 +21,7 @@ interface ProcessedImage {
 async function getProjects() {
 	try {
 		const projects: SanityProject[] = await client.fetch(projectsQuery, {}, {
-			cache: 'no-store', // Pour toujours avoir les données à jour
+			next: { revalidate: 3600 }, // Cache les données pendant 1 heure
 		})
 
 		// Transformer les données Sanity en format utilisable par le composant client
@@ -31,18 +31,18 @@ async function getProjects() {
 			description: project.description,
 			mainImage: project.mainImage
 				? {
-					url: urlFor(project.mainImage).fit('max').auto('format').quality(75).url(),
+					url: urlFor(project.mainImage).width(1600).fit('max').auto('format').quality(90).url(),
 					lqip: getLqip(project.mainImage)
 				}
 				: { url: '', lqip: undefined },
 			gallery: project.gallery && project.gallery.length > 0
 				? project.gallery.map(img => ({
-					url: urlFor(img).width(1920).fit('max').auto('format').quality(75).url(),
+					url: urlFor(img).width(1600).fit('max').auto('format').quality(90).url(),
 					lqip: getLqip(img)
 				}))
 				: project.mainImage
 					? [{
-						url: urlFor(project.mainImage).width(1920).fit('max').auto('format').quality(75).url(),
+						url: urlFor(project.mainImage).width(1600).fit('max').auto('format').quality(90).url(),
 						lqip: getLqip(project.mainImage)
 					}]
 					: [],

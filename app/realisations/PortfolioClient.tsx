@@ -40,22 +40,33 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 
 	// Précharger les images adjacentes pour un chargement instantané
 	useEffect(() => {
+		const preloadedImages: HTMLImageElement[] = [];
+
 		projects.forEach((project, projectIndex) => {
 			const currentIndex = currentImageIndices[projectIndex] || 0;
 			const totalImages = project.gallery.length;
 
 			if (totalImages > 1) {
-				// Précharger l'image suivante
+				// Précharger l'image suivante avec haute priorité
 				const nextIndex = (currentIndex + 1) % totalImages;
-				const nextImage = new window.Image();
-				nextImage.src = project.gallery[nextIndex].url;
+				const nextImg = new window.Image();
+				nextImg.src = project.gallery[nextIndex].url;
+				preloadedImages.push(nextImg);
 
 				// Précharger l'image précédente
 				const prevIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
-				const prevImage = new window.Image();
-				prevImage.src = project.gallery[prevIndex].url;
+				const prevImg = new window.Image();
+				prevImg.src = project.gallery[prevIndex].url;
+				preloadedImages.push(prevImg);
 			}
 		});
+
+		// Cleanup
+		return () => {
+			preloadedImages.forEach(img => {
+				img.src = '';
+			});
+		};
 	}, [currentImageIndices, projects]);
 
 	useEffect(() => {
@@ -192,9 +203,12 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 										alt={`${project.title} - Image ${currentImageIndex + 1}`}
 										fill
 										className={`object-cover fade-in-image ${!isMobile ? 'transition-transform duration-500 group-hover:scale-110' : ''}`}
-										onLoadingComplete={img => img.classList.add('loaded')}
+										onLoad={(e) => e.currentTarget.classList.add('loaded')}
 										placeholder={currentImage.lqip ? "blur" : "empty"}
 										blurDataURL={currentImage.lqip}
+										priority={index < 2}
+										loading={index < 2 ? "eager" : "lazy"}
+										sizes="(max-width: 768px) 100vw, 50vw"
 									/>
 
 									{/* Navigation buttons - Only show if more than 1 image */}
@@ -337,9 +351,11 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 								alt={`${projects[lightboxProject].title} - Image ${lightboxImageIndex + 1}`}
 								fill
 								className="object-contain fade-in-image"
-								onLoadingComplete={img => img.classList.add('loaded')}
+								onLoad={(e) => e.currentTarget.classList.add('loaded')}
 								placeholder={projects[lightboxProject].gallery[lightboxImageIndex].lqip ? "blur" : "empty"}
 								blurDataURL={projects[lightboxProject].gallery[lightboxImageIndex].lqip}
+								priority
+								sizes="90vw"
 							/>
 						</motion.div>
 
