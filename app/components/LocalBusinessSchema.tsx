@@ -3,10 +3,15 @@ export function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "B2dev",
-    "image": "https://b2dev.pro/images/B2dev_simple.svg",
+    "image": "https://b2dev.pro/images/og-image.png",
     "description": "Agence web spécialisée dans la création de sites internet pour artisans et PME en Île-de-France",
     "url": "https://b2dev.pro",
-    "logo": "https://b2dev.pro/images/B2dev_simple.svg",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://b2dev.pro/images/logo_google.png",
+      "width": "1436",
+      "height": "1072"
+    },
     "telephone": "+33682510468",
     "email": "AmauryAll.b2dev@gmail.com",
     "priceRange": "€€",

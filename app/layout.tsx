@@ -7,6 +7,7 @@ import { ThemeProvider } from "./providers/ThemeProvider";
 import { CookieConsentProvider } from "./contexts/CookieConsentContext";
 import { CookieBanner } from "./components/CookieBanner";
 import { LocalBusinessSchema } from "./components/LocalBusinessSchema";
+import { OrganizationSchema } from "./components/OrganizationSchema";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
@@ -85,6 +86,7 @@ export default function RootLayout({
           }}
         />
         <LocalBusinessSchema />
+        <OrganizationSchema />
       </head>
       <body
         className={`${jetbrainsMono.variable} antialiased bg-background dark:bg-background min-h-screen flex flex-col`}
