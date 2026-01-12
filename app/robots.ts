@@ -10,6 +10,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/admin/'],
       },
+      {
+        userAgent: 'Googlebot-Image',
+        allow: ['/favicon*.png', '/favicon.ico', '/apple-touch-icon.png'],
+      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
   }
