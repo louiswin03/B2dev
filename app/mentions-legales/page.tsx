@@ -27,8 +27,8 @@ export default function MentionsLegalesPage() {
               </h2>
               <div className="bg-neutral-100 dark:bg-neutral-900/50 p-6 rounded-lg border border-neutral-200 dark:border-white/10 space-y-2">
                 <p><strong>Raison sociale :</strong> B2dev</p>
-                <p><strong>Statut :</strong> [À compléter - Micro-entreprise/SAS/SARL]</p>
-                <p><strong>SIRET :</strong> [À compléter après immatriculation]</p>
+                <p><strong>Statut :</strong> Auto-entrepreneur</p>
+                <p><strong>SIRET :</strong> 99501585600017</p>
                 <p><strong>Siège social :</strong> Paris, Île-de-France</p>
                 <p><strong>Email :</strong> <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">AmauryAll.b2dev@gmail.com</a></p>
                 <p><strong>Téléphone :</strong> <a href="tel:+33682510468" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">06 82 51 04 68</a></p>
@@ -42,9 +42,9 @@ export default function MentionsLegalesPage() {
                 2. Hébergeur du site
               </h2>
               <div className="bg-neutral-100 dark:bg-neutral-900/50 p-6 rounded-lg border border-neutral-200 dark:border-white/10 space-y-2">
-                <p><strong>Nom :</strong> Vercel Inc.</p>
-                <p><strong>Adresse :</strong> 340 S Lemon Ave #4133, Walnut, CA 91789, USA</p>
-                <p><strong>Site web :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">https://vercel.com</a></p>
+                <p><strong>Nom :</strong> Netlify, Inc.</p>
+                <p><strong>Adresse :</strong> 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</p>
+                <p><strong>Site web :</strong> <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">https://www.netlify.com</a></p>
               </div>
             </div>
 
@@ -119,7 +119,7 @@ export default function MentionsLegalesPage() {
             {/* Date de mise à jour */}
             <div className="pt-4 border-t border-neutral-200 dark:border-white/10">
               <p className="text-sm text-neutral-500 dark:text-neutral-500">
-                Dernière mise à jour : Décembre 2024
+                Dernière mise à jour : Février 2026
               </p>
             </div>
           </div>

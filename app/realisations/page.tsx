@@ -21,7 +21,7 @@ interface ProcessedImage {
 async function getProjects() {
 	try {
 		const projects: SanityProject[] = await client.fetch(projectsQuery, {}, {
-			next: { revalidate: 3600 }, // Cache les données pendant 1 heure
+			next: { revalidate: 60 },
 		})
 
 		// Transformer les données Sanity en format utilisable par le composant client

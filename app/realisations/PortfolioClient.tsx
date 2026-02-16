@@ -185,7 +185,7 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 								whileInView={{ opacity: 1 }}
 								viewport={{ once: true, amount: 0.3 }}
 								transition={{ delay: isMobile ? 0 : index * 0.05, duration: 0.3 }}
-								className={`group relative overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 cursor-pointer transition-all duration-300 flex flex-col h-full ${!isMobile ? 'hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-2' : ''} ${index === 2 ? 'md:col-span-2 md:max-w-2xl md:mx-auto' : ''}`}
+								className={`group relative overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-white/10 cursor-pointer transition-all duration-300 flex flex-col h-full ${!isMobile ? 'hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-2' : ''} ${projects.length % 2 !== 0 && index === projects.length - 1 ? 'md:col-span-2 md:max-w-2xl md:mx-auto' : ''}`}
 							>
 								{/* Image Carousel */}
 								<div

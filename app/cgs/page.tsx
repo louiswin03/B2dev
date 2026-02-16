@@ -27,7 +27,7 @@ export default function CGSPage() {
               </h2>
               <div className="bg-neutral-100 dark:bg-neutral-900/50 p-6 rounded-lg border border-neutral-200 dark:border-white/10 space-y-2">
                 <p><strong>Prestataire :</strong> B2dev</p>
-                <p><strong>SIRET :</strong> [À compléter après immatriculation]</p>
+                <p><strong>SIRET :</strong> 99501585600017</p>
                 <p><strong>Email :</strong> <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">AmauryAll.b2dev@gmail.com</a></p>
                 <p><strong>Téléphone :</strong> <a href="tel:+33682510468" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">06 82 51 04 68</a></p>
               </div>
@@ -242,7 +242,7 @@ export default function CGSPage() {
                 <strong>L'hébergement et le nom de domaine ne sont pas inclus dans nos tarifs</strong>, sauf mention contraire dans le devis.
               </p>
               <p className="mb-3">
-                B2dev peut conseiller et accompagner le Client dans le choix et la configuration de l'hébergement (recommandation : Vercel, OVH, etc.).
+                B2dev peut conseiller et accompagner le Client dans le choix et la configuration de l'hébergement (recommandation : Netlify, OVH, etc.).
               </p>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 Note : Le Client reste propriétaire et responsable de son nom de domaine et de son hébergement.
@@ -328,7 +328,7 @@ export default function CGSPage() {
             {/* Date de mise à jour */}
             <div className="pt-4 border-t border-neutral-200 dark:border-white/10">
               <p className="text-sm text-neutral-500 dark:text-neutral-500">
-                Dernière mise à jour : Décembre 2024
+                Dernière mise à jour : Février 2026
               </p>
             </div>
           </div>
