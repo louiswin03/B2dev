@@ -8,22 +8,22 @@ export function TrustBanner() {
     {
       icon: Shield,
       text: "Paiement sécurisé",
-      color: "text-blue-500"
+      color: "text-teal-600"
     },
     {
       icon: Award,
       text: "Qualité garantie",
-      color: "text-purple-500"
+      color: "text-teal-600"
     },
     {
       icon: Clock,
       text: "Réponse sous 24h",
-      color: "text-green-500"
+      color: "text-teal-600"
     },
     {
       icon: HeartHandshake,
       text: "Satisfaction 100%",
-      color: "text-pink-500"
+      color: "text-teal-600"
     }
   ];
 

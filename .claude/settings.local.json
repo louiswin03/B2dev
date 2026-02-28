@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cygpath:*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/globals.css\":*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/tailwind.config.ts\":*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/components/ui/Button.tsx\":*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/components/Footer.tsx\":*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/page.tsx\":*)",
+      "Bash(python3:*)",
+      "Bash(echo:*)",
+      "Bash(node -e:*)",
+      "Bash(/tmp/write_page.js:*)",
+      "Bash(printf:*)",
+      "Bash(cat:*)",
+      "Bash(node:*)",
+      "Bash(npx next build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(python -c:*)",
+      "Bash(\"C:/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/icon.tsx\":*)",
+      "Bash(\"C:/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/apple-icon.tsx\":*)",
+      "Bash(ls:*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/icon.tsx\":*)",
+      "Bash(\"/c/Users/Louis Winkelmuller/PERSO/Projets/B2dev/app/robots.ts\":*)",
+      "Bash(identify:*)",
+      "Bash(__NEW_LINE_c990c918ee0d6149__ echo \"\")"
+    ]
+  }
+}

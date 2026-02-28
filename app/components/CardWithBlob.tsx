@@ -38,7 +38,7 @@ export const CardWithBlob: React.FC<CardWithBlobProps> = ({ children, className 
       {/* Blob qui suit la souris - désactivé sur mobile */}
       {!isMobile && isHovered && (
         <div
-          className="absolute rounded-full bg-blue-500/25 blur-[50px] pointer-events-none"
+          className="absolute rounded-full bg-teal-400/20 blur-[50px] pointer-events-none"
           style={{
             width: '150px',
             height: '150px',

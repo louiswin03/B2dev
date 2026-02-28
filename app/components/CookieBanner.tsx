@@ -52,8 +52,8 @@ export function CookieBanner() {
                     {/* Icône et texte */}
                     <div className="flex-1">
                       <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center">
-                          <Cookie className="w-6 h-6 text-blue-500" />
+                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-600/10 flex items-center justify-center">
+                          <Cookie className="w-6 h-6 text-teal-600" />
                         </div>
                         <div>
                           <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-2">
@@ -64,7 +64,7 @@ export function CookieBanner() {
                             Avec votre consentement, nous pouvons également utiliser des cookies analytiques pour améliorer votre expérience.{" "}
                             <Link
                               href="/politique-confidentialite"
-                              className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 underline"
+                              className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400 underline"
                             >
                               En savoir plus
                             </Link>
@@ -154,7 +154,7 @@ export function CookieBanner() {
                             onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
                             className="sr-only peer"
                           />
-                          <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+                          <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-teal-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
                         </label>
                       </div>
                     </div>
@@ -177,7 +177,7 @@ export function CookieBanner() {
                             onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })}
                             className="sr-only peer"
                           />
-                          <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+                          <div className="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-teal-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
                         </label>
                       </div>
                     </div>

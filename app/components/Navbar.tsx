@@ -13,7 +13,7 @@ import { Logo } from "./Logo";
 
 const ThemeToggle = dynamic(() => import("./ThemeToggle").then(mod => ({ default: mod.ThemeToggle })), {
   ssr: false,
-  loading: () => <div className="p-2 rounded-lg bg-neutral-200/80 dark:bg-neutral-800/80 border border-neutral-300 dark:border-neutral-700 w-[41px] h-[41px]" />
+  loading: () => <div className="p-2 rounded-lg bg-muted border border-border w-[41px] h-[41px]" />
 });
 
 const navLinks = [
@@ -41,7 +41,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Block scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -56,7 +55,6 @@ export function Navbar() {
   const mobileMenu = mounted && isOpen ? createPortal(
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] md:hidden">
-        {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -65,64 +63,57 @@ export function Navbar() {
           className="absolute inset-0 bg-black/60"
           onClick={() => setIsOpen(false)}
         />
-
-        {/* Menu */}
         <motion.div
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="absolute inset-0 bg-white dark:bg-neutral-900"
+          className="absolute inset-0 bg-background"
         >
           <div className="flex flex-col h-full">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-800">
-              <span className="text-2xl font-bold text-neutral-900 dark:text-white">Menu</span>
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <span className="text-2xl font-bold">Menu</span>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                className="p-2 rounded-lg hover:bg-muted transition-colors"
                 aria-label="Fermer le menu"
               >
-                <X className="w-6 h-6 text-neutral-600 dark:text-neutral-400" />
+                <X className="w-6 h-6 text-muted-foreground" />
               </button>
             </div>
-
-          {/* Navigation Links */}
-          <nav className="flex-1 overflow-y-auto py-6">
-            <div className="space-y-2 px-4">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <div key={link.name}>
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        "block px-4 py-3 rounded-lg text-lg font-medium transition-colors relative overflow-hidden",
-                        isActive
-                          ? "bg-blue-500 text-white"
-                          : "text-neutral-700 dark:text-neutral-300 active:bg-neutral-100 dark:active:bg-neutral-800"
-                      )}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
-                  </div>
-                );
-              })}
+            <nav className="flex-1 overflow-y-auto py-6">
+              <div className="space-y-2 px-4">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <div key={link.name}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "block px-4 py-3 rounded-lg text-lg font-medium transition-colors",
+                          isActive
+                            ? "bg-teal-800 text-white"
+                            : "text-foreground/70 active:bg-muted"
+                        )}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </nav>
+            <div className="p-6 border-t border-border">
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                <Button className="w-full justify-center">
+                  Nous Contacter
+                </Button>
+              </Link>
             </div>
-          </nav>
-
-          {/* Footer with CTA */}
-          <div className="p-6 border-t border-neutral-200 dark:border-neutral-800">
-            <Link href="/contact" onClick={() => setIsOpen(false)}>
-              <Button className="w-full justify-center">
-                Nous Contacter
-              </Button>
-            </Link>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
       </div>
     </AnimatePresence>,
     document.body
@@ -133,24 +124,22 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-white/70 dark:bg-black/70 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/20 border-b border-neutral-200/50 dark:border-white/10"
-          : "bg-white/40 dark:bg-black/40 backdrop-blur-lg border-b border-white/20 dark:border-white/5"
+          ? "bg-background backdrop-blur-xl shadow-sm border-b border-border"
+          : "bg-background/80 backdrop-blur-xl border-b border-transparent"
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center group">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="h-14 w-auto text-neutral-900 dark:text-white transition-all duration-300"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="h-12 w-auto text-foreground transition-all duration-300"
             >
-              <Logo className="h-14 w-auto" />
+              <Logo className="h-12 w-auto" />
             </motion.div>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -159,47 +148,34 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "relative px-4 py-2 text-base font-semibold transition-all duration-300 rounded-lg group",
+                    "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group",
                     isActive
-                      ? "text-neutral-900 dark:text-white"
-                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-teal-800 dark:hover:text-teal-400"
                   )}
                 >
                   {isActive && (
-                    <div className="absolute inset-0 bg-neutral-100 dark:bg-neutral-800 rounded-lg" />
+                    <div className="absolute inset-0 bg-muted rounded-lg" />
                   )}
-                  <motion.span
-                    whileHover={{ y: -1 }}
-                    className="relative z-10"
-                  >
-                    {link.name}
-                  </motion.span>
+                  <span className="relative z-10">{link.name}</span>
                   {!isActive && (
-                    <span className="absolute inset-0 rounded-lg bg-neutral-100 dark:bg-neutral-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <span className="absolute inset-0 rounded-lg bg-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   )}
                 </Link>
               );
             })}
           </div>
 
-          {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link href="/contact" className="hidden md:block">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 font-semibold"
-                >
-                  Nous Contacter
-                </Button>
-              </motion.div>
+              <Button variant="primary" size="sm" className="font-medium">
+                Contactez-nous
+              </Button>
             </Link>
-
             <button
               type="button"
-              className="md:hidden p-2 text-neutral-400 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors relative z-50 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors relative z-50 rounded-lg hover:bg-muted"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={isOpen}
@@ -209,8 +185,6 @@ export function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu Portal */}
       {mobileMenu}
     </nav>
   );

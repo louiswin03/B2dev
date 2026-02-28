@@ -249,7 +249,7 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 
 									{project.projectUrl && (
 										<div className="absolute inset-0 bg-black/60 dark:bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-											<Link href={project.projectUrl} className="p-3 bg-white dark:bg-white text-neutral-900 dark:text-black rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+											<Link href={project.projectUrl} className="p-3 bg-white dark:bg-white text-neutral-900 dark:text-black rounded-full hover:bg-teal-700 hover:text-white transition-colors">
 												<ExternalLink className="w-6 h-6" />
 											</Link>
 										</div>
@@ -259,7 +259,7 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 								<div className="p-8 flex-1 flex flex-col">
 									<div className="flex justify-between items-start mb-6">
 										<div>
-											<h3 className="text-2xl font-bold text-neutral-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
+											<h3 className="text-2xl font-bold text-neutral-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
 												{project.title}
 											</h3>
 										</div>

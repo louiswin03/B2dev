@@ -32,11 +32,11 @@ interface ServicesClientProps {
 }
 
 const iconMap: Record<string, React.ReactNode> = {
-	blue: <Store className="w-8 h-8 text-blue-400" />,
-	purple: <Package className="w-8 h-8 text-purple-400" />,
-	orange: <ShoppingCart className="w-8 h-8 text-orange-400" />,
-	pink: <ShoppingCart className="w-8 h-8 text-pink-400" />,
-	green: <Check className="w-8 h-8 text-green-400" />,
+	blue: <Store className="w-8 h-8 text-teal-400" />,
+	purple: <Package className="w-8 h-8 text-teal-400" />,
+	orange: <ShoppingCart className="w-8 h-8 text-teal-400" />,
+	pink: <ShoppingCart className="w-8 h-8 text-teal-400" />,
+	green: <Check className="w-8 h-8 text-teal-400" />,
 };
 
 export default function ServicesClient({ services, faqs }: ServicesClientProps) {
@@ -63,7 +63,7 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 					<p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mb-4">
 						Sites modernes et performants. Prix compétitifs grâce à notre profil junior.
 					</p>
-					<p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">
+					<p className="text-lg text-teal-700 dark:text-teal-400 font-semibold">
 						💰 Aide possible : jusqu'à 50% remboursé* pour les artisans et commerçants IDF
 					</p>
 				</motion.div>
@@ -85,12 +85,12 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 									!isMobile ? 'hover:-translate-y-2' : ''
 								} ${
 									service.isRecommended
-										? `bg-purple-50 dark:bg-white/5 border-purple-500/50 shadow-lg shadow-purple-500/10 ${!isMobile ? 'hover:shadow-purple-500/20' : ''}`
-										: `bg-neutral-100 dark:bg-neutral-900/50 border-neutral-200 dark:border-white/10 ${!isMobile ? 'hover:border-neutral-300 dark:hover:border-white/20 hover:shadow-lg hover:shadow-blue-500/10' : ''}`
+										? `bg-teal-50 dark:bg-white/5 border-teal-600/50 shadow-lg shadow-teal-600/10 ${!isMobile ? 'hover:shadow-teal-600/20' : ''}`
+										: `bg-neutral-100 dark:bg-neutral-900/50 border-neutral-200 dark:border-white/10 ${!isMobile ? 'hover:border-neutral-300 dark:hover:border-white/20 hover:shadow-lg hover:shadow-teal-600/10' : ''}`
 								}`}
 							>
 								{service.isRecommended && (
-									<div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-base font-medium">
+									<div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-teal-700 text-white px-4 py-1 rounded-full text-base font-medium">
 										Recommandé
 									</div>
 								)}
@@ -100,10 +100,10 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 										className={cn(
 											"w-14 h-14 rounded-xl flex items-center justify-center mb-6 border",
 											!isMobile && "transition-transform duration-200 hover:scale-110",
-											service.color === "blue" && "bg-blue-500/10 border-blue-500/20",
-											service.color === "purple" && "bg-purple-500/10 border-purple-500/20",
-											service.color === "pink" && "bg-pink-500/10 border-pink-500/20",
-											service.color === "orange" && "bg-orange-500/10 border-orange-500/20"
+											service.color === "blue" && "bg-teal-600/10 border-teal-600/20",
+											service.color === "purple" && "bg-teal-500/10 border-teal-500/20",
+											service.color === "pink" && "bg-teal-600/10 border-teal-600/20",
+											service.color === "orange" && "bg-teal-600/10 border-teal-600/20"
 										)}
 									>
 										{icon}
@@ -118,12 +118,12 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 										{service.price !== "Devis" && <span className="text-neutral-500 dark:text-neutral-500">HT</span>}
 									</div>
 									{service.price !== "Devis" && !service.price.includes('€') === false && (
-										<p className="text-base text-green-600 dark:text-green-400 mt-2 font-medium">
+										<p className="text-base text-teal-600 dark:text-teal-400 mt-2 font-medium">
 											Soit {parseInt(service.price.replace('€', '')) / 2}€ après aide IDF*
 										</p>
 									)}
 									{service.subtitle && (
-										<p className="text-base text-green-600 dark:text-green-400 mt-2 font-medium">
+										<p className="text-base text-teal-600 dark:text-teal-400 mt-2 font-medium">
 											{service.subtitle}
 										</p>
 									)}
@@ -134,10 +134,10 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 										<li key={idx} className="flex items-start gap-3 text-base text-neutral-700 dark:text-neutral-300">
 											<Check className={cn(
 												"w-5 h-5 flex-shrink-0",
-												service.color === "blue" && "text-blue-400",
-												service.color === "purple" && "text-purple-400",
-												service.color === "pink" && "text-pink-400",
-												service.color === "orange" && "text-orange-400"
+												service.color === "blue" && "text-teal-400",
+												service.color === "purple" && "text-teal-400",
+												service.color === "pink" && "text-teal-400",
+												service.color === "orange" && "text-teal-400"
 											)} />
 											<span>{feature}</span>
 										</li>
@@ -162,7 +162,7 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 			</Section>
 
 			{/* FAQ Section */}
-			<Section className="bg-neutral-50 dark:bg-neutral-950/50 py-24">
+			<Section className="py-24">
 				<motion.div
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
@@ -194,15 +194,15 @@ export default function ServicesClient({ services, faqs }: ServicesClientProps) 
 								<div className="flex items-start gap-4 flex-1">
 									<div className={cn(
 										"w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0",
-										faq.color === "blue" && "bg-blue-500/10",
-										faq.color === "green" && "bg-green-500/10",
-										faq.color === "purple" && "bg-purple-500/10"
+										faq.color === "blue" && "bg-teal-600/10",
+										faq.color === "green" && "bg-teal-500/10",
+										faq.color === "purple" && "bg-teal-500/10"
 									)}>
 										<ChevronDown className={cn(
 											"w-5 h-5 transition-transform duration-200",
-											faq.color === "blue" && "text-blue-500",
-											faq.color === "green" && "text-green-500",
-											faq.color === "purple" && "text-purple-500",
+											faq.color === "blue" && "text-teal-600",
+											faq.color === "green" && "text-teal-500",
+											faq.color === "purple" && "text-teal-500",
 											openFaqIndex === index && "rotate-180"
 										)} />
 									</div>

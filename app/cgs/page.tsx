@@ -28,8 +28,8 @@ export default function CGSPage() {
               <div className="bg-neutral-100 dark:bg-neutral-900/50 p-6 rounded-lg border border-neutral-200 dark:border-white/10 space-y-2">
                 <p><strong>Prestataire :</strong> B2dev</p>
                 <p><strong>SIRET :</strong> 99501585600017</p>
-                <p><strong>Email :</strong> <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">AmauryAll.b2dev@gmail.com</a></p>
-                <p><strong>Téléphone :</strong> <a href="tel:+33682510468" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">06 82 51 04 68</a></p>
+                <p><strong>Email :</strong> <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400">AmauryAll.b2dev@gmail.com</a></p>
+                <p><strong>Téléphone :</strong> <a href="tel:+33682510468" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400">06 82 51 04 68</a></p>
               </div>
               <p className="mt-4">
                 Ces CGS s'appliquent à toute prestation de création de site web fournie par B2dev. L'acceptation d'un devis vaut acceptation sans réserve des présentes conditions.
@@ -54,9 +54,9 @@ export default function CGSPage() {
               <p className="mb-4">B2dev propose les prestations suivantes :</p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800/30">
+                <div className="bg-teal-50 dark:bg-teal-950/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800/30">
                   <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-white">Site Vitrine</h3>
-                  <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">990€ HT</p>
+                  <p className="text-2xl font-bold text-teal-700 dark:text-teal-400 mb-2">990€ HT</p>
                   <ul className="text-sm space-y-1 list-disc list-inside">
                     <li>Design personnalisé</li>
                     <li>1 à 5 pages</li>
@@ -65,9 +65,9 @@ export default function CGSPage() {
                   </ul>
                 </div>
 
-                <div className="bg-purple-50 dark:bg-purple-950/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800/30">
+                <div className="bg-teal-50 dark:bg-teal-950/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800/30">
                   <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-white">Pack Pro</h3>
-                  <p className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">1 490€ HT</p>
+                  <p className="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">1 490€ HT</p>
                   <ul className="text-sm space-y-1 list-disc list-inside">
                     <li>Tout du pack Vitrine</li>
                     <li>Jusqu'à 10 pages</li>
@@ -77,9 +77,9 @@ export default function CGSPage() {
                   </ul>
                 </div>
 
-                <div className="bg-pink-50 dark:bg-pink-950/20 p-4 rounded-lg border border-pink-200 dark:border-pink-800/30">
+                <div className="bg-teal-50 dark:bg-teal-950/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800/30">
                   <h3 className="font-semibold text-lg mb-2 text-neutral-900 dark:text-white">Personnalisé</h3>
-                  <p className="text-2xl font-bold text-pink-600 dark:text-pink-400 mb-2">Sur devis</p>
+                  <p className="text-2xl font-bold text-teal-500 dark:text-teal-400 mb-2">Sur devis</p>
                   <ul className="text-sm space-y-1 list-disc list-inside">
                     <li>Fonctionnalités avancées</li>
                     <li>E-commerce</li>
@@ -112,7 +112,7 @@ export default function CGSPage() {
                 Article 4 - Tarifs et modalités de paiement
               </h2>
 
-              <div className="bg-green-50 dark:bg-green-950/20 p-6 rounded-lg border border-green-200 dark:border-green-800/30 mb-4">
+              <div className="bg-teal-50 dark:bg-teal-950/20 p-6 rounded-lg border border-teal-200 dark:border-teal-800/30 mb-4">
                 <h3 className="font-semibold text-lg mb-3 text-neutral-900 dark:text-white">
                   Modalités de paiement
                 </h3>
@@ -133,7 +133,7 @@ export default function CGSPage() {
                 Les prix sont exprimés en euros, hors taxes (HT). La TVA applicable sera précisée sur le devis selon le statut de B2dev au moment de la facturation.
               </p>
 
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mt-4">
+              <div className="bg-teal-600/10 border border-teal-600/20 rounded-lg p-4 mt-4">
                 <p className="font-semibold text-neutral-900 dark:text-white">💰 Aide de l'État (Chèque Numérique IDF)</p>
                 <p className="text-sm mt-2">
                   Les artisans et commerçants franciliens de moins de 20 salariés peuvent bénéficier d'une aide jusqu'à 50% du montant du site (plafond 1 500€). B2dev fournit les documents nécessaires à la constitution du dossier.
@@ -191,7 +191,7 @@ export default function CGSPage() {
                 Article 8 - Propriété intellectuelle
               </h2>
 
-              <div className="bg-yellow-50 dark:bg-yellow-950/20 p-6 rounded-lg border border-yellow-200 dark:border-yellow-800/30 mb-4">
+              <div className="bg-teal-50 dark:bg-teal-950/20 p-6 rounded-lg border border-teal-200 dark:border-teal-800/30 mb-4">
                 <h3 className="font-semibold text-lg mb-3 text-neutral-900 dark:text-white">
                   ✓ Transfert de propriété
                 </h3>
@@ -214,7 +214,7 @@ export default function CGSPage() {
                 Article 9 - Garantie et maintenance
               </h2>
 
-              <div className="bg-green-50 dark:bg-green-950/20 p-6 rounded-lg border border-green-200 dark:border-green-800/30 mb-4">
+              <div className="bg-teal-50 dark:bg-teal-950/20 p-6 rounded-lg border border-teal-200 dark:border-teal-800/30 mb-4">
                 <h3 className="font-semibold text-lg mb-3 text-neutral-900 dark:text-white">
                   Garantie incluse (3 mois)
                 </h3>
@@ -296,7 +296,7 @@ export default function CGSPage() {
               </h2>
               <p>
                 Les données personnelles collectées dans le cadre de la prestation sont traitées conformément au RGPD. Pour plus d'informations, consultez notre{" "}
-                <a href="/politique-confidentialite" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 underline">
+                <a href="/politique-confidentialite" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400 underline">
                   Politique de Confidentialité
                 </a>.
               </p>

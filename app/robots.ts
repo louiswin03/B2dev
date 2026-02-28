@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: 'Googlebot-Image',
-        allow: ['/favicon*.png', '/favicon.ico', '/apple-touch-icon.png'],
+        allow: ['/icon*', '/apple-icon*', '/favicon*.png', '/favicon.ico', '/apple-touch-icon.png'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

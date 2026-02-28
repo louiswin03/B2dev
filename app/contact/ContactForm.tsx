@@ -109,14 +109,14 @@ export default function ContactForm() {
             
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 flex-shrink-0">
+                <div className="w-12 h-12 rounded-lg bg-teal-600/10 flex items-center justify-center text-teal-600 flex-shrink-0">
                   <Mail className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Email</h4>
                   <a
                     href="mailto:AmauryAll.b2dev@gmail.com"
-                    className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    className="text-neutral-600 dark:text-neutral-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                   >
                     AmauryAll.b2dev@gmail.com
                   </a>
@@ -124,14 +124,14 @@ export default function ContactForm() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 flex-shrink-0">
+                <div className="w-12 h-12 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-500 flex-shrink-0">
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Téléphone</h4>
                   <a
                     href="tel:+33682510468"
-                    className="text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    className="text-neutral-600 dark:text-neutral-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                   >
                     06 82 51 04 68
                   </a>
@@ -139,7 +139,7 @@ export default function ContactForm() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-500 flex-shrink-0">
+                <div className="w-12 h-12 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-500 flex-shrink-0">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
@@ -171,7 +171,7 @@ export default function ContactForm() {
                   id="firstname"
                   name="firstname"
                   required
-                  className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-colors"
                   placeholder="Jean"
                 />
               </div>
@@ -182,7 +182,7 @@ export default function ContactForm() {
                   id="lastname"
                   name="lastname"
                   required
-                  className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-colors"
                   placeholder="Dupont"
                 />
               </div>
@@ -195,7 +195,7 @@ export default function ContactForm() {
                 id="email"
                 name="email"
                 required
-                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-colors"
                 placeholder="jean.dupont@email.com"
               />
             </div>
@@ -208,7 +208,7 @@ export default function ContactForm() {
                 required
                 value={selectedService}
                 onChange={(e) => setSelectedService(e.target.value)}
-                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-colors"
               >
                 <option value="">Sélectionnez un service</option>
                 <option value="Vitrine">Site Vitrine - 990€</option>
@@ -224,7 +224,7 @@ export default function ContactForm() {
                 id="subject"
                 name="subject"
                 required
-                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-colors"
               >
                 <option value="">Sélectionnez un sujet</option>
                 <option value="Demande de devis">Demande de devis</option>
@@ -240,7 +240,7 @@ export default function ContactForm() {
                 name="message"
                 required
                 rows={4}
-                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+                className="w-full bg-white dark:bg-black/50 border border-neutral-300 dark:border-white/10 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-colors resize-none"
                 placeholder="Parlez-nous de votre projet..."
               />
             </div>

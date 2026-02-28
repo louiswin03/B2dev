@@ -30,8 +30,8 @@ export default function MentionsLegalesPage() {
                 <p><strong>Statut :</strong> Auto-entrepreneur</p>
                 <p><strong>SIRET :</strong> 99501585600017</p>
                 <p><strong>Siège social :</strong> Paris, Île-de-France</p>
-                <p><strong>Email :</strong> <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">AmauryAll.b2dev@gmail.com</a></p>
-                <p><strong>Téléphone :</strong> <a href="tel:+33682510468" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">06 82 51 04 68</a></p>
+                <p><strong>Email :</strong> <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400">AmauryAll.b2dev@gmail.com</a></p>
+                <p><strong>Téléphone :</strong> <a href="tel:+33682510468" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400">06 82 51 04 68</a></p>
                 <p><strong>Directeur de la publication :</strong> Amaury Allain & Louis Winkelmuller</p>
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function MentionsLegalesPage() {
               <div className="bg-neutral-100 dark:bg-neutral-900/50 p-6 rounded-lg border border-neutral-200 dark:border-white/10 space-y-2">
                 <p><strong>Nom :</strong> Netlify, Inc.</p>
                 <p><strong>Adresse :</strong> 44 Montgomery Street, Suite 300, San Francisco, CA 94104, USA</p>
-                <p><strong>Site web :</strong> <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">https://www.netlify.com</a></p>
+                <p><strong>Site web :</strong> <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400">https://www.netlify.com</a></p>
               </div>
             </div>
 
@@ -73,11 +73,11 @@ export default function MentionsLegalesPage() {
                 Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant.
               </p>
               <p className="mt-3">
-                Pour exercer ces droits, contactez-nous à : <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">AmauryAll.b2dev@gmail.com</a>
+                Pour exercer ces droits, contactez-nous à : <a href="mailto:AmauryAll.b2dev@gmail.com" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400">AmauryAll.b2dev@gmail.com</a>
               </p>
               <p className="mt-3">
                 Pour plus d'informations, consultez notre{" "}
-                <a href="/politique-confidentialite" className="text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 underline">
+                <a href="/politique-confidentialite" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-400 underline">
                   Politique de Confidentialité
                 </a>.
               </p>

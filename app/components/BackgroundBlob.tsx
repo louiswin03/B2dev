@@ -11,7 +11,7 @@ export const BackgroundBlob = () => {
 
       {/* Blob principal qui suit la souris */}
       <div
-        className="absolute rounded-full bg-blue-500/25 blur-[100px]"
+        className="absolute rounded-full bg-teal-500/25 blur-[100px]"
         style={{
           width: '350px',
           height: '350px',
@@ -24,7 +24,7 @@ export const BackgroundBlob = () => {
       />
 
       {/* Blob secondaire statique en bas à droite */}
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-600/15 blur-[100px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-teal-600/15 blur-[100px] rounded-full" />
 
     </div>
   );

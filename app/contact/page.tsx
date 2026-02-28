@@ -14,15 +14,15 @@ export default function ContactPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-base">
             <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
-              <span className="text-green-500">✓</span>
+              <span className="text-teal-500">✓</span>
               <span>Devis 100% gratuit</span>
             </div>
             <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
-              <span className="text-green-500">✓</span>
+              <span className="text-teal-500">✓</span>
               <span>Réponse sous 24h</span>
             </div>
             <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
-              <span className="text-green-500">✓</span>
+              <span className="text-teal-500">✓</span>
               <span>Sans engagement</span>
             </div>
           </div>
