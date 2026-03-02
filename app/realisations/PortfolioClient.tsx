@@ -235,11 +235,10 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 													<button
 														key={imageIndex}
 														onClick={(e) => goToImage(index, imageIndex, e)}
-														className={`w-2 h-2 rounded-full transition-all ${
-															currentImageIndex === imageIndex
+														className={`w-2 h-2 rounded-full transition-all ${currentImageIndex === imageIndex
 																? 'bg-white w-6'
 																: 'bg-white/50 hover:bg-white/75'
-														}`}
+															}`}
 														aria-label={`Aller à l'image ${imageIndex + 1}`}
 													/>
 												))}
@@ -269,12 +268,25 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 										{project.description}
 									</p>
 
-									<div className="flex flex-wrap gap-2 mt-auto">
-										{project.tags.map((tag) => (
-											<span key={tag} className="px-3 py-1.5 rounded bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-sm text-neutral-700 dark:text-neutral-300">
-												{tag}
-											</span>
-										))}
+									<div className="flex items-end justify-between gap-4 mt-auto">
+										<div className="flex flex-wrap gap-2">
+											{project.tags.map((tag) => (
+												<span key={tag} className="px-3 py-1.5 rounded bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-sm text-neutral-700 dark:text-neutral-300">
+													{tag}
+												</span>
+											))}
+										</div>
+										{project.projectUrl && (
+											<Link
+												href={project.projectUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="inline-flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors text-sm font-medium whitespace-nowrap shrink-0"
+											>
+												Voir le site
+												<ExternalLink className="w-4 h-4" />
+											</Link>
+										)}
 									</div>
 								</div>
 							</motion.div>
@@ -369,11 +381,10 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
 											e.stopPropagation();
 											setLightboxImageIndex(imageIndex);
 										}}
-										className={`w-2.5 h-2.5 rounded-full transition-all ${
-											lightboxImageIndex === imageIndex
+										className={`w-2.5 h-2.5 rounded-full transition-all ${lightboxImageIndex === imageIndex
 												? 'bg-white w-8'
 												: 'bg-white/50 hover:bg-white/75'
-										}`}
+											}`}
 										aria-label={`Aller à l'image ${imageIndex + 1}`}
 									/>
 								))}

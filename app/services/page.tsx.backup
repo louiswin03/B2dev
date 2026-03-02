@@ -72,11 +72,7 @@ const faqs = [
     answer: "Absolument. Une fois le paiement effectué, vous êtes propriétaire à 100% de votre site web, du nom de domaine et du code source. Pas de location à vie chez nous.",
     color: "blue"
   },
-  {
-    question: "Proposez-vous de la maintenance ?",
-    answer: "Oui, nous proposons des forfaits de maintenance optionnels pour gérer les mises à jour, la sécurité et les petites modifications mensuelles.",
-    color: "blue"
-  },
+  
   {
     question: "Comment fonctionne l'aide de l'État ?",
     answer: "La Région Île-de-France propose le \"Chèque Numérique\" qui finance jusqu'à 50% de votre site web (plafond 1 500€).\n\nConditions : Artisans et commerçants franciliens de moins de 20 salariés.\n\nNous vous fournissons un devis éligible et vous accompagnons dans la démarche sur mesdemarches.iledefrance.fr.",

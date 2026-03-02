@@ -47,7 +47,7 @@ async function getProjects() {
 					}]
 					: [],
 			tags: project.tags || [],
-			projectUrl: project.projectUrl,
+			projectUrl: project.projectUrl || (project.title.toLowerCase().includes('plombier') && project.title.toLowerCase().includes('leb') ? 'https://lebdepannage.com' : undefined),
 		}))
 	} catch (error) {
 		console.error('Erreur lors de la récupération des projets:', error)

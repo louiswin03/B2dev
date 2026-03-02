@@ -36,8 +36,11 @@ async function getServicesData() {
 
 export default async function ServicesPage() {
 	const { services, faqs } = await getServicesData()
+	const filteredFaqs = faqs.filter(
+		(faq) => !/^proposez-vous de la maintenance\s*\?$/i.test(faq.question.trim())
+	)
 
-	if (services.length === 0 && faqs.length === 0) {
+	if (services.length === 0 && filteredFaqs.length === 0) {
 		return (
 			<div className="min-h-screen flex items-center justify-center">
 				<div className="text-center">
@@ -52,5 +55,5 @@ export default async function ServicesPage() {
 		)
 	}
 
-	return <ServicesClient services={services} faqs={faqs} />
+	return <ServicesClient services={services} faqs={filteredFaqs} />
 }
